@@ -29,7 +29,7 @@
             <!-- start: Content -->
             <div class="form-element">
                 <div class="col-md-12 padding-0">
-                    <form method="patch" enctype="multipart/form-data"
+                    <form method="post" enctype="multipart/form-data"
                           action="{{route('hotels.update',$hotel->id)}}">
                         <input type="hidden" name="hotel_id" value="{{$hotel->id}}">
 
@@ -193,10 +193,10 @@
                         </div>
 
                         <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                            <input id="hotel_logo" type="file" class="form-text{{ $errors->has('hotel_hotel_logo') ? ' is-invalid' : '' }}"
-                                   name="hotel_logo" value="{{ $hotel->hotel_logo }}" required autofocus>
-                            @if (Storage::disk('public')->has($hotel->image))
-                                <img src="{{Storage::url($hotel->image) }}" class="" width="300px"
+                            <input class="form-text" type="file" name="hotel_logo"
+                                value="{{ $hotel->hotel_logo }}" required autofocus>
+                            @if (Storage::disk('public')->has($hotel->hotel_logo))
+                                <img src="{{Storage::url($hotel->hotel_logo) }}" class="" width="300px"
                                      height="100px"/>
                             @endif
 

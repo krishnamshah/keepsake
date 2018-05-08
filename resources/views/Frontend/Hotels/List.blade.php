@@ -76,7 +76,7 @@
                 {{$sea->hotel_name}}
                 <div class="thumb">
                     <a class="hover-img" href="{{route('hotel.detail',[$sea->id])}}">
-                        <img src="{{Storage::URL($sea->image)}}" alt="{{$sea->name}}" title="AMaze">
+                        <img src="{{Storage::URL($sea->hotel_logo)}}" alt="{{$sea->name}}" title="AMaze">
                         <div class="hover-inner hover-inner-block hover-inner-bottom hover-inner-bg-black hover-hold">
                             <div class="text-small">
                                 <h5>{{$sea->street}},{{$sea->city}},{{$sea->province}}</h5>

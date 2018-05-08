@@ -334,7 +334,7 @@ Route::group(['prefix' => 'backend'], function () {
                 'uses' => 'Backend\Hotels\hotelsController@editHotel',
                 'as' => 'hotels.edit'
             ]);
-            Route::get('/update', [
+            Route::post('/update', [
                 'uses' => 'Backend\Hotels\hotelsController@storeHotel',
                 'as' => 'hotels.update'
             ]);

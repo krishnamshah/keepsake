@@ -88,7 +88,7 @@ class hotelsController extends Controller
         if ($request->file('hotel_hotel_logo')) {
             $hotel_hotel_logo = $request->file('hotel_hotel_logo');
             $img = Image::make($hotel_hotel_logo);
-            $fileName = 'Hotels' . '/' . date("Y-m-d-H-i-s") . '_Hotels__' . $hotel_hotel_logo->getClientOriginalName();
+            $fileName = 'hotel' . '/' . date("Y-m-d-H-i-s") . '_Hotels__' . $hotel_hotel_logo->getClientOriginalName();
             $img->fit(1200, 600, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
@@ -157,15 +157,15 @@ class hotelsController extends Controller
         $hotel->contact_person_contact = $request->input('hotel_contact_person_contact ');
         $hotel->hotel_star_rating = $request->input('hotel_hotel_star_rating');
         $hotel->rating_agency = $request->input('hotel_rating_agency');
-        if ($request->file('hotel_hotel_logo')) {
-            $hotel_hotel_logo = $request->file('hotel_hotel_logo');
+
+        if ($request->file('hotel_logo')) {
+            $hotel_hotel_logo = $request->file('hotel_logo');
             $img = Image::make($hotel_hotel_logo);
-            $fileName = 'Hotels' . '/' . date("Y-m-d-H-i-s") . '_Hotels__' . $hotel_hotel_logo->getClientOriginalName();
+            $fileName = 'hotel' . '/' . date("Y-m-d-H-i-s") . '_Hotels__' . $hotel_hotel_logo->getClientOriginalName();
             $img->fit(1200, 600, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
-
 
             Storage::disk('public')->put($fileName, $img->stream());
             $hotel->hotel_logo = $fileName;

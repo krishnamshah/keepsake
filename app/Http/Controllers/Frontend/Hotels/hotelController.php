@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Frontend\Hotels;
 
 use App\Http\Controllers\Controller;
+use App\Models\HotelGallery;
 use Mail;
 use App\Mail\Hotel\bookingsuccess;
 use App\Models\Hotels;
@@ -64,8 +65,14 @@ class hotelController extends Controller
     public function detailhotels(Request $request, $id)
     {
         $hotel = Hotels::findorfail($id);
+        $hotelGallery=HotelGallery::where('hotel_id',$hotel->id)->get();
+        $rooms=Rooms::where('hotel_id',$hotel->id)->get();
 
-        return view('Frontend.Hotels.Detail', ['hotel' => $hotel]);
+        return view('Frontend.Hotels.Detail', [
+            'hotel' => $hotel,
+            'hotelGallery'=>$hotelGallery,
+            'rooms'=>$rooms
+        ]);
     }
 
 

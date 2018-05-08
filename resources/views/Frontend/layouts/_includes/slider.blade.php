@@ -5,7 +5,7 @@
         <div class="bg-holder full text-center text-white">
             <div class="bg-mask"></div>
             <div class="bg-img" style="
-            background-image:url({{Storage::url($slide->image) }});"></div>
+            background-image:url('{{Storage::url($slide->image) }}')"></div>
             <div class="bg-front full-center">
                 <div class="owl-cap">
                     <h1 class="owl-cap-title fittext">{{$slide->title}}</h1>

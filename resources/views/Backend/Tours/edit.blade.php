@@ -82,8 +82,8 @@
                                 <input class="form-text" type="file" name="tour_image" value="{{$tour->image}}">
                                 <span class="bar"></span>
                                 <label>Tour Image</label>
-                                @if (Storage::disk('public')->has($vehicle->image))
-                                    <img src="{{Storage::url($vehicle->image) }}" class="" width="300px"
+                                @if (Storage::disk('public')->has($tour->image))
+                                    <img src="{{Storage::url($tour->image) }}" class="" width="300px"
                                          height="100px"/>
                                 @endif
                             </div>

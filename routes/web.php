@@ -629,6 +629,18 @@ Route::group(['prefix' => 'backend'], function () {
                 'uses' => 'Backend\Tours\toursController@deactivateTour',
                 'as' => 'tours.deactivate'
             ]);
+            Route::get('/ImageGallery/{id}', [
+                'uses' => 'Backend\Tours\toursController@ImageGallery',
+                'as' => 'tours.images'
+            ]);
+            Route::post('/AddImageGallery', [
+                'uses' => 'Backend\Tours\toursController@AddImageGallery',
+                'as' => 'tours.images.addgallery'
+            ]);
+            Route::get('/DeleteImageGallery/{id}', [
+                'uses' => 'Backend\Tours\toursController@deleteImageGallery',
+                'as' => 'delete.tours.image'
+            ]);
             Route::group(['prefix' => 'bookingTours'], function () {
                 Route::get('/', [
                     'uses' => 'Backend\Tours\bookingtoursController@list',

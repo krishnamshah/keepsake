@@ -25,6 +25,9 @@ class Tours extends Model
         'best_time',
         'group_size'
     ];
-
+    public function TourGallery()
+    {
+        return $this->hasMany('App\Models\TourGallery');
+    }
 
 }

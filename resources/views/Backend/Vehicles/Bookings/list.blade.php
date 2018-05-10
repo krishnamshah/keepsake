@@ -26,8 +26,8 @@
                 <td>{{$booking->start_day}}</td>
                 <td>{{$booking->end_day}}</td>
                 <td>
-                   <a href="{{route('bookingsvehicle.details',$booking->id)}}"> <span class="label label-info">View</span></a>
-                    <a href="{{route('bookingsvehicle.edit',$booking->id)}}" ><span class="label label-warning">Edit</span></a>
+{{--                   <a href="{{route('bookingsvehicle.details',$booking->id)}}"> <span class="label label-info">View</span></a>--}}
+                    <a href="{{route('bookingsVehicle.edit',$booking->id)}}" ><span class="label label-warning">Edit</span></a>
 {{--                    <a href="{{route((($booking->user->status=='active')?'bookings.deactivate':'bookings.activate'),$booking->id)}}"> <span class="label label-primary">{{($booking->user->status=='active')?'Deactive':'Active'}}</span></a>--}}
                     {{--<a href="#"> <span class="label label-danger">Delete</span></a>--}}
 

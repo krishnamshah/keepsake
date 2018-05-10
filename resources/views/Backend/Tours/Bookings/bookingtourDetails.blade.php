@@ -173,7 +173,7 @@
                         @php
                             $i=1
                         @endphp
-                        @forelse($booking->TourGuestDetails as $booked)
+                        @forelse($bookings as $booked)
                             <div class="media">
                                 <div class="media-left">
                                     <span class="icon-envelope-letter icons" style="font-size:2em;"> </span>

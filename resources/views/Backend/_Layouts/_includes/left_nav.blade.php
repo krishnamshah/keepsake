@@ -42,9 +42,9 @@
                     <li><a href="{{route('hotels.facilities.list')}}"><span class="fa-list fa"></span>Facilities</a></li>
                     <li><a href="{{route('hotels.services.list')}}"><span class="fa-list fa"></span>Services</a></li>
                     <li><a href="{{route('rooms.list')}}"><span class="fa-list fa"></span>Room List</a></li>
-                    <li><a href="#"><span class="fa-list fa"></span>Room Facilities</a></li>
-                    <li><a href="#"><span class="fa-list fa"></span>Room Services</a></li>
-                    <li><a href="#"><span class="fa-clipboard fa"></span> Bookings</a></li>
+                    <li><a href="{{route('hotels.facilities.list')}}"><span class="fa-list fa"></span>Room Facilities</a></li>
+                    <li><a href="{{route('hotels.services.list')}}"><span class="fa-list fa"></span>Room Services</a></li>
+                    <li><a href="{{route('bookingsRoom.list')}}"><span class="fa-clipboard fa"></span> Bookings</a></li>
                     <li><a href="#"><span class="fa-ticket fa"></span> Invloce</a></li>
 
                 </ul>
@@ -56,7 +56,7 @@
                 </a>
                 <ul class="nav nav-list tree">
                     <li><a href="{{route('vehicles.list')}}"><span class="fa-list fa"></span> List</a></li>
-                    <li><a href="#"><span class="fa-clipboard fa"></span> Bookings</a></li>
+                    <li><a href="{{route('bookingsVehicle.list')}}"><span class="fa-clipboard fa"></span> Bookings</a></li>
                     <li><a href="#"><span class="fa-ticket fa"></span> Invloce</a></li>
 
                 </ul>

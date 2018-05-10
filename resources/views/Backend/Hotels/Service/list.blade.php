@@ -37,7 +37,7 @@
             </tr>
         @empty
             <tr>
-                <td>Sorry no tours have been created please add one</td>
+                <td>Sorry no Hotel Service have been created please add one</td>
 
             </tr>
         @endforelse

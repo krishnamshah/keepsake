@@ -14,25 +14,24 @@
                 <span class="bar"></span>
                 <label>Hotel Serveice Time(Hours)</label>
             </div>
-            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+            <div class="form-group" style="margin-top:40px !important;">
                 <span class="bar"></span>
                 <label>Service Type</label>
 
-                <div class="form-animate-radio">
+                <div class="form-group form-animate-radio">
                     <label class="radio">
-                        <input id="radio1" name="hotel_service_type" type="radio" value="paid" checked>
+                        <input id="radio" name="hotel_service_type" type="radio" value="paid" checked>
                         <span class="outer">
                               <span class="inner"></span></span> Paid Service
                     </label>
                     <label class="radio">
-                        <input id="radio1" name="hotel_service_type" type="radio" checked value="free">
+                        <input id="radio" name="hotel_service_type" type="radio" checked value="free">
                         <span class="outer">
                               <span class="inner"></span></span> Free Service
                     </label>
                 </div>
-
-
             </div>
+
 
             <div class="form-group form-animate-text" style="margin-top:40px !important;">
                 <input type="text" class="form-text" required name="hotel_service_cost">

@@ -4,12 +4,8 @@
     <link rel="stylesheet" type="text/css"
           href="{{URL::asset('BackendTheme/asset/css/plugins/font-awesome.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{URL::asset('BackendTheme/asset/css/plugins/animate.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{URL::asset('BackendTheme/asset/css/plugins/nouislider.min.css')}}"/>
+   />
     <link rel="stylesheet" type="text/css" href="{{URL::asset('BackendTheme/asset/css/plugins/select2.min.css')}}"/>
-    <link rel="stylesheet" type="text/css"
-          href="{{URL::asset('BackendTheme/asset/css/plugins/ionrangeslider/ion.rangeSlider.css')}}"/>
-    <link rel="stylesheet" type="text/css"
-          href="{{URL::asset('BackendTheme/asset/css/plugins/ionrangeslider/ion.rangeSlider.skinFlat.css')}}"/>
     <link rel="stylesheet" type="text/css"
           href="{{URL::asset('BackendTheme/asset/css/plugins/bootstrap-material-datetimepicker.css')}}"/>
 @endsection
@@ -124,7 +120,6 @@
     <script src="{{URL::asset('BackendTheme/asset/js/plugins/jquery.nicescroll.js')}}"></script>
     <script src="{{URL::asset('BackendTheme/asset/js/plugins/jquery.mask.min.js')}}"></script>
     <script src="{{URL::asset('BackendTheme/asset/js/plugins/select2.full.min.js')}}"></script>
-    <script src="{{URL::asset('BackendTheme/asset/js/plugins/nouislider.min.js')}}"></script>
     <script src="{{URL::asset('BackendTheme/asset/js/plugins/jquery.validate.min.js')}}"></script>
 
 

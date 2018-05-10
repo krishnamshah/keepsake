@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Vehicles;
 
 use App\Http\Controllers\Controller;
 use App\Models\bookingVehicle;
+use App\Models\TourGuestDetails;
 use App\Models\bookedvehicledetails;
 use App\Models\Vehicles;
 use Illuminate\Http\Request;
@@ -23,7 +24,9 @@ class bookingVehiclesController extends Controller
     public function list()
     {
         $booking=bookingVehicle::all();
-        return view('Backend.Vehicles.Bookings.index', ['bookings' => $booking]
+        $bookings=TourGuestDetails::all();
+
+        return view('Backend.Vehicles.Bookings.index', ['booking' => $booking,'bookings' => $bookings]
         );
     }
     public function createBooking($vehicle_id, $locations, $no_of_People,$start_date,$end_date)

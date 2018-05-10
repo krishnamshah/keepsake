@@ -23,7 +23,7 @@
                 <td>
                    <a href="{{route('tours.details',$tour->id)}}"> <span class="label label-info">View</span></a>
                     <a href="{{route('tours.edit',$tour->id)}}" ><span class="label label-warning">Edit</span></a>
-
+                    <a href="{{route('tours.images',$tour->id)}}" ><span class="label label-warning">Tour Image Gallery</span></a>
 
                 </td>
             </tr>

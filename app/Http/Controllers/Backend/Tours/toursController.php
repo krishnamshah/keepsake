@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Backend\Tours;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\TourGallery;
 use App\Models\Tours;
 use App\Models\bookingTour;
 use App\Models\TourSearches;
@@ -160,5 +161,57 @@ class toursController extends Controller
         return redirect()->route('organization')->with(['success' => 'Successfully changed']);
     }
 
+    public function ImageGallery($tour_id)
+    {
+        $tourId = $tour_id;
+        $tour_name = Tours::where('id', $tour_id)->first();
+        $tourImages = TourGallery::where('tour_id', $tour_id)->get();
+        return view('Backend.Tours.ImageGallery', ['tour_Images' => $tourImages, 'tourId' => $tourId, 'tour' => $tour_name]);
+    }
+
+    public function AddImageGallery(Request $request)
+    {
+        $files = $request->file('file');
+        if ($request->file('file')) {
+            $room_image = $files;
+            $img = Image::make($room_image);
+            $fileName = 'tour/tourGallery' . '/' . date("Y-m-d-H-i-s") . '_tour_gallery__' . $room_image->getClientOriginalName();
+            $img->fit(1200, 600, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+
+            Storage::disk('public')->put($fileName, $img->stream());
+
+        }
+        $img->destroy();
+        $form = new TourGallery();
+        $form->tour_id = $request->input('tour_id');
+        $form->image = $fileName;
+        $form->save();
+
+//        return response()->json(['success'=>$fileName]);
+        return redirect()->back();
+    }
+
+    public function deleteImageGallery($id)
+    {
+
+        $image = TourGallery::WHERE('id', $id)->first();
+        if (!(empty($image->image))) {
+
+            if (Storage::disk('public')->exists($image->image)) {
+
+//                unlink($image->image);
+                if (Storage::disk('public')->delete($image->image)) {
+                    $image->delete();
+                }
+            }
+
+
+        }
+
+        return redirect()->back();
+    }
 
 }

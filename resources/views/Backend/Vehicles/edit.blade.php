@@ -159,6 +159,10 @@
                                 <input class="form-text" type="file" name="vehicle_image" value="{{$vehicle->image}}">
                                 <span class="bar"></span>
                                 <label>vehicle Image</label>
+                                @if (Storage::disk('public')->has($vehicle->image))
+                                    <img src="{{Storage::url($vehicle->image) }}" class="" width="300px"
+                                         height="100px"/>
+                                @endif
                             </div>
                             <div class="form-group form-animate-text" style="margin-top:40px !important;">
                                 <input type="text" class="form-text" required name="rate_perday"

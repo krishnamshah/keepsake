@@ -6,8 +6,7 @@
             <li><a href="#">Flights</a></li>
             <li><a href="{{route('vehicle.list')}}">Cars</a></li>
             <li><a href="{{route('tour.list')}}">Tours</a>
-
-            </li>
+                <li class="pull-right"><a href="{{url('login')}}">Login</a></li>
         </ul>
     </div>
 </div>

@@ -79,7 +79,7 @@
             <li><a href="#"><span class="fa-table fa"></span>Menu Management</a></li>
             <li><a href="#"><span class="fa-user-plus fa"></span>User Management</a></li>
             <li><a href="#"><span class="fa-gears fa"></span>Configuration</a></li>
-            <li><a href="{{route('backend.logout')}}"><span class="fa-sign-out fa"></span>Logout</a></li>
+            <li><a href="#"><span class="fa-sign-out fa"></span>Logout</a></li>
 
         </ul>
     </div>

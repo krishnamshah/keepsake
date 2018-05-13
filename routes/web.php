@@ -10,17 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::prefix('Backend')->group(function(){
+//
+Route::group(['middleware' => 'guest'], function () {
     Route::get('/', [
         'uses' => 'Frontend\homeController@index',
         'as' => 'home'
     ]);
-});
-Route::group(['middleware' => 'guest'], function () {
-//    Route::get('/', [
-//        'uses' => 'Frontend\homeController@index',
-//        'as' => 'home'
-//    ]);
 
     Route::group(['prefix' => 'Hotel'], function () {
         Route::get('/Result', [
@@ -193,12 +188,12 @@ Route::group(['middleware' => 'guest'], function () {
 //Route::get('/member',function (){
 //    return view('Backend.Member.dashboard');
 //})->name('member');
-//Route::get('/custmer',function (){
+//Route::get('/customer',function (){
 //    return view('Backend.Customer.dashboard');
 //})->name('customer');
 //
 //Route::get('');
-Route::group(['prefix' => 'backend'], function () {
+Route::prefix( 'backend')->middleware('role:superadministrator|administrator|b2b')->group( function () {
     Route::get('/', function () {
         return view('Backend.Users.login');
     })->name('login');
@@ -210,9 +205,10 @@ Route::group(['prefix' => 'backend'], function () {
     Route::group(['prefix' => 'admin'], function () {
 
 
-        Route::get('/', function () {
-            return view('Backend.Admin.dashboard');
-        })->name('dashboard');
+        Route::get('/dashboard',[
+           'uses'=>'Backend\Admin\dashboardControlller@index',
+            'as'=>'dashboard'
+        ]);
 
         Route::get('/forgetpassword', function () {
             return view('Backend.Users.login');
@@ -775,5 +771,9 @@ Route::group(['prefix' => 'backend'], function () {
         'uses' => 'Backend\UsersController@getLogout',
         'as' => 'backend.logout'
     ]);
-
+    Route::resource('/users','Auth\UserController');
 });
+Auth::routes();
+
+
+//Route::get('/home', 'HomeController@index')->name('home');

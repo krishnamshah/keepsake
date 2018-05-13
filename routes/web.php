@@ -10,13 +10,27 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+<<<<<<< HEAD
 //
 Route::group(['middleware' => 'guest'], function () {
+=======
+Route::prefix('Backend')->group(function(){
+
+});
+Route::group(['middleware' => 'guest'], function () {
+//    Route::get('/', [
+//        'uses' => 'Frontend\homeController@index',
+//        'as' => 'home'
+//    ]);
+>>>>>>> 98887a734bf85ec4f35979701bf550dd5d092301
     Route::get('/', [
         'uses' => 'Frontend\homeController@index',
         'as' => 'home'
     ]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 98887a734bf85ec4f35979701bf550dd5d092301
     Route::group(['prefix' => 'Hotel'], function () {
         Route::get('/Result', [
             'uses' => 'Frontend\Hotels\hotelController@searchhotels',

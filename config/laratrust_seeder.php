@@ -11,15 +11,14 @@ return [
             'users' => 'c,r,u,d',
             'profile' => 'r,u'
         ],
-        'user' => [
+        'b2b' => [
+            'profile' => 'r,u'
+        ],
+        'customer' => [
             'profile' => 'r,u'
         ],
     ],
-    'permission_structure' => [
-        'cru_user' => [
-            'profile' => 'c,r,u'
-        ],
-    ],
+    'permission_structure' => [],
     'permissions_map' => [
         'c' => 'create',
         'r' => 'read',

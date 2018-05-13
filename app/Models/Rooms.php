@@ -19,10 +19,23 @@ class Rooms extends Model
         'no_of_rooms',
     ];
 
-public function hotels(){
-    return $this->belongsTo('App\Models\hotels','id');
-}
-    public function HotelRoomFacility(){
+    public function hotels()
+    {
+        return $this->belongsTo('App\Models\hotels', 'id');
+    }
+
+    public function roomTypes()
+    {
+        return $this->belongsTo('App\Models\HotelRoomType','id','hotel_room_type_id');
+    }
+
+    public function HotelRoomFacility()
+    {
         return $this->belongsToMany('App\Models\HotelRoomFacility')->withTimestamps();
+    }
+
+    public function HotelRoomService()
+    {
+        return $this->belongsToMany('App\Models\HotelRoomService')->withTimestamps();
     }
 }

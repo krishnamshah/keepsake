@@ -374,7 +374,7 @@
                                         @endif
                                         @endforeach
                                 >
-                                {{$service->title}} - {{$facility->description}}
+                                {{$service->service_name}} - {{$service->service_description}}
 
 
                             @empty

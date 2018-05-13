@@ -315,10 +315,23 @@
                 @forelse($services as $service)
 
                     <input type="checkbox" value="{{$service->id}}" name="service_id[]">
-                    {{$service->title}} - {{$facility->description}}
+                    {{$service->service_name}} - {{$service->service_description}}
 
                 @empty
-                    Sorry No faciliites Are avilable
+                    Sorry No Service Are avilable
+                @endforelse
+
+            </div>
+            <hr/>
+            <h3> Hotel Facilitiess</h3>
+            <div class="col-md-12">
+                @forelse($facilities as $facility)
+
+                    <input type="checkbox" value="{{$facility->id}}" name="service_id[]">
+                    {{$facility->title}} - {{$facility->description}}
+
+                @empty
+                    Sorry No Service Are avilable
                 @endforelse
 
             </div>

@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Backend\Hotels;
 
 use App\Http\Controllers\Controller;
 use App\Models\HotelRoomFacility;
+use App\Models\HotelRoomService;
 use App\Models\Hotels;
 use App\Models\Rooms;
 use Illuminate\Http\Request;
@@ -30,8 +31,13 @@ class roomsController extends Controller
     public function listRoom()
     {
         $rooms = Rooms::all();
-        $roomFacility = HotelRoomFacility::all();
-        return view('Backend.Hotels.Rooms.index', ['rooms' => $rooms, 'roomFacility' => $roomFacility]
+        $roomFacility = HotelRoomFacility::where('enable', 1)->get();
+        $roomService = HotelRoomService::where('enable', 1)->get();
+        return view('Backend.Hotels.Rooms.index', [
+                'rooms' => $rooms,
+                'roomFacility' => $roomFacility,
+                'roomService' => $roomService
+            ]
         );
     }
 
@@ -59,9 +65,9 @@ class roomsController extends Controller
             'room_hotel_room_type_id' => '',
             'room_name' => '',
             'room_no_of_people' => '',
-            'room_max_extra_bed_up'=>'',
+            'room_max_extra_bed_up' => '',
             'room_room_cost' => '',
-            'room_cost_per_extra_bed' =>'',
+            'room_cost_per_extra_bed' => '',
             'room_no_of_rooms' => '',
         ]);
 
@@ -82,7 +88,7 @@ class roomsController extends Controller
 
     public function editRoom($id)
     {
-        $room =Rooms::findorFail($id);
+        $room = Rooms::findorFail($id);
         $roomFacility = HotelRoomFacility::all();
         return view('Backend.Hotels.Rooms.edit', ['room' => $room, 'roomFacility' => $roomFacility]);
     }

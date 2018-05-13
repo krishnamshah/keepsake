@@ -20,10 +20,6 @@
                 <input type="text" class="form-text" required name="room_name">
                 <span class="bar"></span>
                 <label>Name</label>
-            </div> <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                <input type="text" class="form-text" required name="room_type">
-                <span class="bar"></span>
-                <label>Type</label>
             </div>
             <div class="form-group form-animate-text" style="margin-top:40px !important;">
                 <input type="text" class="form-text" required name="room_no_of_people">
@@ -64,6 +60,20 @@
 
                 @empty
                     Sorry No faciliites Are avilable
+                @endforelse
+
+            </div>
+            <hr/>
+            <h3> Hotel Room Services</h3>
+            <div class="col-md-12">
+
+                @forelse($roomService as $service)
+
+                    <input type="checkbox" value="{{$service->id}}" name="facilities_id[]">
+                    {{$service->service_name}} - {{$service->service_description}}
+
+                @empty
+                    Sorry No Services Are avilable
                 @endforelse
 
             </div>

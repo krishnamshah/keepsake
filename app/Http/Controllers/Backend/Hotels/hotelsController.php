@@ -30,7 +30,12 @@ class hotelsController extends Controller
     {
         $booking = '';
         $facilities = HotelFacility::where('enable', 1)->get();
-        return view('Backend.Hotels.index', ['booking' => $booking, 'facilities' => $facilities]
+        $services = HotelService::where('enable', 1)->get();
+        return view('Backend.Hotels.index', [
+                'booking' => $booking,
+                'facilities' => $facilities,
+                'services' => $services,
+            ]
         );
 
     }
@@ -47,7 +52,7 @@ class hotelsController extends Controller
     public function createHotel(Request $request)
     {
 
-       $this->validate($request, [
+        $this->validate($request, [
             'hotel_name' => 'required',
             'hotel_province' => '',
             'hotel_district' => '',
@@ -63,8 +68,8 @@ class hotelsController extends Controller
             'hotel_hotel_checkIN_time' => '',
             'hotel_hotel_checkOUT_time' => '',
             'hotel_contact_person_contact' => '',
-            'hotel_hotel_star_rating' =>'',
-            'hotel_rating_agency' =>'',
+            'hotel_hotel_star_rating' => '',
+            'hotel_rating_agency' => '',
         ]);
 
         $hotel = new Hotels();
@@ -74,13 +79,13 @@ class hotelsController extends Controller
         $hotel->city = $request->input('hotel_city');
         $hotel->street = $request->input('hotel_street');
         $hotel->house_no = $request->input('hotel_house_no');
-        $hotel->google_coordinate_latitude= $request->input('hotel_google_coordinate_latitude');
+        $hotel->google_coordinate_latitude = $request->input('hotel_google_coordinate_latitude');
         $hotel->google_coordinate_longitude = $request->input('hotel_google_coordinate_longitude');
         $hotel->email = $request->input('hotel_email');
-        $hotel->contact= $request->input('hotel_contact');
+        $hotel->contact = $request->input('hotel_contact');
         $hotel->website = $request->input('hotel_website');
         $hotel->contact_person = $request->input('hotel_contact_person');
-        $hotel->hotel_checkIN_time= $request->input('hotel_hotel_checkIN_time');
+        $hotel->hotel_checkIN_time = $request->input('hotel_hotel_checkIN_time');
         $hotel->hotel_checkOUT_time = $request->input('hotel_hotel_checkOUT_time');
         $hotel->contact_person_contact = $request->input('hotel_contact_person_contact ');
         $hotel->hotel_star_rating = $request->input('hotel_hotel_star_rating');
@@ -134,8 +139,8 @@ class hotelsController extends Controller
             'hotel_hotel_checkIN_time' => '',
             'hotel_hotel_checkOUT_time' => '',
             'hotel_contact_person_contact' => '',
-            'hotel_hotel_star_rating' =>'',
-            'hotel_rating_agency' =>'',
+            'hotel_hotel_star_rating' => '',
+            'hotel_rating_agency' => '',
         ]);
 
         $hotel = Hotels::findorfail($request->input('hotel_id'));
@@ -146,13 +151,13 @@ class hotelsController extends Controller
         $hotel->city = $request->input('hotel_city');
         $hotel->street = $request->input('hotel_street');
         $hotel->house_no = $request->input('hotel_house_no');
-        $hotel->google_coordinate_latitude= $request->input('hotel_google_coordinate_latitude');
+        $hotel->google_coordinate_latitude = $request->input('hotel_google_coordinate_latitude');
         $hotel->google_coordinate_longitude = $request->input('hotel_google_coordinate_longitude');
         $hotel->email = $request->input('hotel_email');
-        $hotel->contact= $request->input('hotel_contact');
+        $hotel->contact = $request->input('hotel_contact');
         $hotel->website = $request->input('hotel_website');
         $hotel->contact_person = $request->input('hotel_contact_person');
-        $hotel->hotel_checkIN_time= $request->input('hotel_hotel_checkIN_time');
+        $hotel->hotel_checkIN_time = $request->input('hotel_hotel_checkIN_time');
         $hotel->hotel_checkIN_time = $request->input('hotel_hotel_checkOUT_time');
         $hotel->contact_person_contact = $request->input('hotel_contact_person_contact ');
         $hotel->hotel_star_rating = $request->input('hotel_hotel_star_rating');

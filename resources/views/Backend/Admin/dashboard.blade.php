@@ -1,23 +1,56 @@
 @extends('Backend._Layouts.master_layout')
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{URL::asset('BackendTheme/asset/css/plugins/font-awesome.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{URL::asset('BackendTheme/asset/css/plugins/simple-line-icons.css')}}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{{URL::asset('BackendTheme/asset/css/plugins/font-awesome.min.css')}}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{{URL::asset('BackendTheme/asset/css/plugins/simple-line-icons.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{URL::asset('BackendTheme/asset/css/plugins/animate.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{URL::asset('BackendTheme/asset/css/plugins/fullcalendar.min.css')}}"/>
-    @endsection
+    <link rel="stylesheet" type="text/css"
+          href="{{URL::asset('BackendTheme/asset/css/plugins/fullcalendar.min.css')}}"/>
+@endsection
 @section('content')
 
-<!-- start: content -->
-<div id="content">
+    <!-- start: content -->
+    <div id="content">
 
 
-    <div class="col-md-12" style="padding:20px;">
+        <div class="col-md-12" style="padding:20px;">
+            <h1>Welcome {{ Auth::user()->name }} !!!</h1>
 
+            <a href="{{route('users.create')}}" class="button button-blue"><i class="fa fa-user-plus"></i>Create User
+            </a>
+        </div>
+
+        <hr>
+        <div class="card">
+            <div class="card-content">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach($users as $user)
+                        <tr>
+                            <th>{{$user->id}}</th>
+                            <th>{{$user->name}}</th>
+                            <th>{{$user->email}}</th>
+                            <th><a class="button is-outlined" href="{{route('users.edit',$user->id)}}">Edit</a></th>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-</div>
-<!-- end: content -->
+    <!-- end: content -->
 
-    @endsection
+@endsection
 @section('script')
     <!-- plugins -->
     <script src="{{URL::asset('BackendTheme/asset/js/plugins/moment.min.js')}}"></script>
@@ -32,12 +65,12 @@
     <!-- custom -->
     <script src="{{URL::asset('BackendTheme/asset/js/main.js')}}"></script>
     <script type="text/javascript">
-        (function(jQuery){
+        (function (jQuery) {
 
             // start: Chart =============
 
             Chart.defaults.global.pointHitDetectionRadius = 1;
-            Chart.defaults.global.customTooltips = function(tooltip) {
+            Chart.defaults.global.customTooltips = function (tooltip) {
 
                 var tooltipEl = $('#chartjs-tooltip');
 
@@ -73,7 +106,7 @@
                     fontStyle: tooltip.fontStyle
                 });
             };
-            var randomScalingFactor = function() {
+            var randomScalingFactor = function () {
                 return Math.round(Math.random() * 100);
             };
             var lineChartData = {
@@ -86,7 +119,7 @@
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [18,9,5,7,4.5,4,5,4.5,6,5.6,7.5]
+                    data: [18, 9, 5, 7, 4.5, 4, 5, 4.5, 6, 5.6, 7.5]
                 }, {
                     label: "My Second dataset",
                     fillColor: "rgba(21,113,186,0.5)",
@@ -95,14 +128,14 @@
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(151,187,205,1)",
-                    data: [4,7,5,7,4.5,4,5,4.5,6,5.6,7.5]
+                    data: [4, 7, 5, 7, 4.5, 4, 5, 4.5, 6, 5.6, 7.5]
                 }]
             };
 
             var doughnutData = [
                 {
                     value: 300,
-                    color:"#129352",
+                    color: "#129352",
                     highlight: "#15BA67",
                     label: "Alfa"
                 },
@@ -137,7 +170,7 @@
             var doughnutData2 = [
                 {
                     value: 100,
-                    color:"#129352",
+                    color: "#129352",
                     highlight: "#15BA67",
                     label: "Alfa"
                 },
@@ -190,10 +223,10 @@
                 ]
             };
 
-            window.onload = function(){
+            window.onload = function () {
                 var ctx = $(".doughnut-chart")[0].getContext("2d");
                 window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
-                    responsive : true,
+                    responsive: true,
                     showTooltips: true
                 });
 

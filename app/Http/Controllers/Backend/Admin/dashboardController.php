@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers\Backend\Admin;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class dashboardController extends Controller
 {
@@ -18,6 +19,7 @@ class dashboardController extends Controller
     }
 
     public function index(){
-        return view('Backend.Admin.dashboard');
+        $users=User::all();
+        return view('Backend.Admin.dashboard',['users'=>$users]);
     }
 }

@@ -12,8 +12,5 @@ use Illuminate\Support\Facades\Storage;
 
 class dashboardController extends Controller
 {
-    public function dashboard()
-    {
-        return view('');
-    }
+
 }

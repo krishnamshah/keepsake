@@ -11,17 +11,17 @@
 |
 */
 Route::prefix('Backend')->group(function(){
-    Route::get('/', [
-        'uses' => 'Frontend\homeController@index',
-        'as' => 'home'
-    ]);
+
 });
 Route::group(['middleware' => 'guest'], function () {
 //    Route::get('/', [
 //        'uses' => 'Frontend\homeController@index',
 //        'as' => 'home'
 //    ]);
-
+    Route::get('/', [
+        'uses' => 'Frontend\homeController@index',
+        'as' => 'home'
+    ]);
     Route::group(['prefix' => 'Hotel'], function () {
         Route::get('/Result', [
             'uses' => 'Frontend\Hotels\hotelController@searchhotels',

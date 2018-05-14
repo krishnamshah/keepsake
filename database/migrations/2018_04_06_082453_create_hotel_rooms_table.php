@@ -29,7 +29,6 @@ class CreateHotelRoomsTable extends Migration
             $table->foreign('hotel_room_type_id')->references('id')->on('hotel_room_types');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('updated_user_id')->references('id')->on('users');
-
             $table->timestamps();
         });
     }

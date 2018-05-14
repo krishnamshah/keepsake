@@ -30,24 +30,17 @@
                 <div class="form-element">
                     <div class="col-md-12 padding-0">
                         <form method="patch" enctype="multipart/form-data"
-                              action="{{route('hotels.room.types.update',$type->id)}}">
+                              action="{{route('hotels.room.types.update',$roomType->id)}}">
                             @csrf
                                 <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                                    <input type="text" class="form-text" required name="hotel_room_types_title" value="{{$type->title}}">
+                                    <input type="text" class="form-text" required name="hotel_room_types_title" value="{{$roomType->room_type}}">
                                     <span class="bar"></span>
-                                    <label>Hotel Room Facility Title</label>
+                                    <label>Hotel Room Type Title</label>
                                 </div>
                                 <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                                    <input type="text" class="form-text" required name="hotel_room_types_description" value="{{$type->description}}">
+                                    <input type="text" class="form-text" required name="hotel_room_types_description" value="{{$roomType->description}}">
                                     <span class="bar"></span>
-                                    <label>Hotel Room FacilityDescription</label>
-                                </div>
-                            <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                                {{ Form::checkbox('hotel_room_types_enable',($type->enable==1)?"checked":"", true) }}
-                                    {{--<input type="checkbox" name="hotel_room_types_enable"  >--}}
-                                    {{--<label class="onoffswitch-label" for="myonoffswitch1A">{{($type->enable==1)?"Enable":"Disable"}}</label>--}}
-                                </div>
-
+                                    <label>Hotel Room Type Description</label>                                </div>
 
 
                                 <div class="form-group form-animate-text" style="margin-top:40px !important;">

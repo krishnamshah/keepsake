@@ -10,36 +10,24 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-<<<<<<< HEAD
-//
-Route::group(['middleware' => 'guest'], function () {
-=======
-Route::prefix('Backend')->group(function(){
 
-});
+//
+
+
 Route::group(['middleware' => 'guest'], function () {
-//    Route::get('/', [
-//        'uses' => 'Frontend\homeController@index',
-//        'as' => 'home'
-//    ]);
->>>>>>> 98887a734bf85ec4f35979701bf550dd5d092301
+
     Route::get('/', [
         'uses' => 'Frontend\homeController@index',
         'as' => 'home'
     ]);
-<<<<<<< HEAD
 
-=======
->>>>>>> 98887a734bf85ec4f35979701bf550dd5d092301
+
     Route::group(['prefix' => 'Hotel'], function () {
         Route::get('/Result', [
             'uses' => 'Frontend\Hotels\hotelController@searchhotels',
             'as' => 'hotel.result'
         ]);
-//        Route::get('/Search', [
-//            'uses' => 'Frontend\Hotels\hotelController@searchhotels',
-//            'as' => 'hotel.search'
-//        ]);
+
         Route::get('/Details/{id}', [
             'uses' => 'Frontend\Hotels\hotelController@detailhotels',
             'as' => 'hotel.detail'
@@ -64,9 +52,9 @@ Route::group(['middleware' => 'guest'], function () {
             'uses' => 'Frontend\Hotels\hotelController@sendemail',
             'as' => 'hotel.sendemail'
         ]);
-        Route::get('/hotel/rooms/{id}',[
-           'uses' => 'Frontend\Hotels\hotelController@hotelroomlist',
-           'as' => 'hotel.rooms'
+        Route::get('/hotel/rooms/{id}', [
+            'uses' => 'Frontend\Hotels\hotelController@hotelroomlist',
+            'as' => 'hotel.rooms'
         ]);
 
     });
@@ -207,7 +195,7 @@ Route::group(['middleware' => 'guest'], function () {
 //})->name('customer');
 //
 //Route::get('');
-Route::prefix( 'backend')->middleware('role:superadministrator|administrator|b2b')->group( function () {
+Route::prefix('backend')->middleware('role:superadministrator|administrator|b2b')->group(function () {
     Route::get('/', function () {
         return view('Backend.Users.login');
     })->name('login');
@@ -219,9 +207,9 @@ Route::prefix( 'backend')->middleware('role:superadministrator|administrator|b2b
     Route::group(['prefix' => 'admin'], function () {
 
 
-        Route::get('/dashboard',[
-           'uses'=>'Backend\Admin\dashboardControlller@index',
-            'as'=>'dashboard'
+        Route::get('/dashboard', [
+            'uses' => 'Backend\Admin\dashboardControlller@index',
+            'as' => 'dashboard'
         ]);
 
         Route::get('/forgetpassword', function () {
@@ -435,33 +423,26 @@ Route::prefix( 'backend')->middleware('role:superadministrator|administrator|b2b
                 ]);
             });
             Route::group(['prefix' => 'room'], function () {
-                Route::group(['prefix'=>'room-types'],function(){
+                Route::group(['prefix' => 'room-types'], function () {
                     Route::get('/', [
                         'uses' => 'Backend\Hotels\hotelsRoomTypesController@list',
-                        'as' => 'hotels.room.facilities.list'
+                        'as' => 'hotels.room.types.list'
                     ]);
                     Route::post('/add', [
                         'uses' => 'Backend\Hotels\hotelsRoomTypesController@add',
-                        'as' => 'hotels.room.facilities.add'
+                        'as' => 'hotels.room.types.add'
                     ]);
                     Route::get('/edit/{id}', [
                         'uses' => 'Backend\Hotels\hotelsRoomTypesController@edit',
-                        'as' => 'hotels.room.facilities.edit'
+                        'as' => 'hotels.room.types.edit'
                     ]);
                     Route::get('/update/{id}', [
                         'uses' => 'Backend\Hotels\hotelsRoomTypesController@update',
-                        'as' => 'hotels.room.facilities.update'
+                        'as' => 'hotels.room.types.update'
                     ]);
-                    Route::get('/activateType/{id}', [
-                        'uses' => 'Backend\Hotels\hotelsRoomTypesController@activate',
-                        'as' => 'hotels.room.facilities.activate'
-                    ]);
-                    Route::get('/deactivateType/{id}', [
-                        'uses' => 'Backend\Hotels\hotelsRoomTypesController@deactivate',
-                        'as' => 'hotels.room.facilities.deactivate'
-                    ]);
+
                 });
-                Route::group(['prefix'=>'room-facilities'],function(){
+                Route::group(['prefix' => 'room-facilities'], function () {
                     Route::get('/', [
                         'uses' => 'Backend\Hotels\hotelsRoomFacilitiesController@list',
                         'as' => 'hotels.room.facilities.list'
@@ -718,9 +699,9 @@ Route::prefix( 'backend')->middleware('role:superadministrator|administrator|b2b
                     'uses' => 'Backend\Tours\bookingtoursController@createBooking',
                     'as' => 'bookingsTour.add'
                 ]);
-                Route::post('/create',[
-                    'uses'=>'Backend\Tours\bookingtoursController@saveBooking',
-                    'as'=>'bookingsTour.save'
+                Route::post('/create', [
+                    'uses' => 'Backend\Tours\bookingtoursController@saveBooking',
+                    'as' => 'bookingsTour.save'
                 ]);
                 Route::post('/search', [
                     'uses' => 'Backend\Tours\bookingtoursController@search',
@@ -794,9 +775,9 @@ Route::prefix( 'backend')->middleware('role:superadministrator|administrator|b2b
                     'uses' => 'Backend\Vehicles\bookingvehiclesController@createBooking',
                     'as' => 'bookingsVehicle.add'
                 ]);
-                Route::post('/create',[
-                    'uses'=>'Backend\Vehicles\bookingvehiclesController@saveBooking',
-                    'as'=>'bookingsVehicle.save'
+                Route::post('/create', [
+                    'uses' => 'Backend\Vehicles\bookingvehiclesController@saveBooking',
+                    'as' => 'bookingsVehicle.save'
                 ]);
                 Route::post('/search', [
                     'uses' => 'Backend\Vehicles\bookingvehiclesController@search',
@@ -829,18 +810,15 @@ Route::prefix( 'backend')->middleware('role:superadministrator|administrator|b2b
     });
 
 
-
     Route::get('/logout', [
-        'uses' => 'Backend\UsersController@getLogout',
+        'uses' => 'Auth\UsersController@getLogout',
         'as' => 'backend.logout'
     ]);
     Route::post('/logout', [
-        'uses' => 'Backend\UsersController@getLogout',
+        'uses' => 'Auth\UsersController@getLogout',
         'as' => 'backend.logout'
     ]);
-    Route::resource('/users','Auth\UserController');
+    Route::resource('/users', 'Auth\UserController');
 });
-Auth::routes();
 
-
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::Auth();

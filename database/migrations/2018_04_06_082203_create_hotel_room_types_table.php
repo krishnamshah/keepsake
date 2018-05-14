@@ -16,6 +16,7 @@ class CreateHotelRoomTypesTable extends Migration
         Schema::create('hotel_room_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('room_type');
+            $table->text('description')->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('updated_user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -1,11 +1,11 @@
-<h3 class="head text-center">List of Hotels</h3>
+<h3 class="head text-center">List of Hotels Room Services</h3>
 <div class="responsive-table">
     <table id="datatables-example" class="table table-striped table-bordered"
            width="100%" cellspacing="0">
         <thead>
         <tr>
-            <th>Hotel Service Name</th>
-            <th>Hotel Service Description</th>
+            <th>Hotel Room Service Name</th>
+            <th>Hotel Room Service Description</th>
             <th>Service Hour</th>
             <th>Service Type</th>
             <th>Service Status</th>

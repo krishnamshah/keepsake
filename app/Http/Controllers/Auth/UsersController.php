@@ -9,7 +9,7 @@ use DB;
 use Session;
 use Illuminate\Support\Facades\Hash;
 use Input;
-
+use Illuminate\Support\Facades\Auth;
 class UsersController extends Controller
 {
     /**
@@ -130,6 +130,7 @@ class UsersController extends Controller
     public function getLogout()
     {
         Auth::logout();
-        return Redirect::route('home');
+        return Redirect::route('/');
     }
+
 }

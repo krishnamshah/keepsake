@@ -21,7 +21,7 @@
             <div class="panel box-shadow-none text-left content-header">
                 <div class="panel-body" style="padding-bottom:0px;">
                     <div class="col-md-12">
-                        <h3 class="animated fadeInLeft">Hotel services</h3>
+                        <h3 class="animated fadeInLeft">Hotel Room services</h3>
                         {{--<p class="animated fadeInDown">--}}
                         {{--Ui Element <span class="fa-angle-right fa"></span> Tabs & Panels--}}
                         {{--</p>--}}
@@ -36,7 +36,7 @@
                             <div class="col-md-12 tabs-area">
                                 <div class="liner"></div>
                                 <ul class="nav nav-tabs nav-tabs-v5" id="tabs-demo6">
-                                    <li class="active">Hotels Service List
+                                    <li class="active">Hotels Room Service List
                                         <a href="#tabs-demo6-area1" data-toggle="tab" title="Hotels">
                           <span class="round-tabs one">
                             <i class="glyphicon glyphicon-plane"></i>
@@ -44,7 +44,7 @@
                                         </a>
                                     </li>
 
-                                    <li>Add New Hotel Service
+                                    <li>Add New Hotel Room Service
                                         <a href="#tabs-demo6-area2" data-toggle="tab" title="Add New Hotel">
                                             <span class="round-tabs two"><i class="glyphicon glyphicon-user"></i></span>
                                         </a>

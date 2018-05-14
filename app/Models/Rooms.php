@@ -21,12 +21,12 @@ class Rooms extends Model
 
     public function hotels()
     {
-        return $this->belongsTo('App\Models\hotels', 'id');
+        return $this->belongsTo('App\Models\hotels', 'hotel_id','id');
     }
 
     public function roomTypes()
     {
-        return $this->belongsTo('App\Models\HotelRoomType','id','hotel_room_type_id');
+        return $this->belongsTo('App\Models\HotelRoomType','hotel_room_type_id','id');
     }
 
     public function HotelRoomFacility()

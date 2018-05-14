@@ -34,7 +34,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <ul>
                             <li><a class="dropdown-item" href="">Edit Profile</a></li>
-                            <li><a class="dropdown-item" href="">Manage Roles</a></li>
+                            <li><a class="dropdown-item" href="{{route('roles.index')}}">Manage Roles</a></li>
+                            <li><a class="dropdown-item" href="{{route('permissions.index')}}">Manage Permissions</a></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

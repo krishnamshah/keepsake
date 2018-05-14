@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Backend\Admin;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Permission;
 
 class dashboardController extends Controller
 {

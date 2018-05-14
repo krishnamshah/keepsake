@@ -754,6 +754,8 @@ Route::prefix('backend')->middleware('role:superadministrator|administrator|b2b'
         'as' => 'backend.logout'
     ]);
     Route::resource('/users', 'Auth\UsersController');
+    Route::resource('/permissions', 'Auth\PermissionController', ['except' => 'destroy']);
+    Route::resource('/roles', 'Auth\RoleController', ['except' => 'destroy']);
 });
 
 Route::Auth();

@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use DB;
+use Session;
+use Illuminate\Support\Facades\Hash;
+use Input;
 
 class UsersController extends Controller
 {
@@ -37,7 +41,25 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:users',
+            'password' =>'required|min:6'
+        ]);
+
+
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make('password');
+
+        if ($user->save()) {
+            return redirect()->route('users.show', $user->id);
+        } else {
+            Session::flash('danger', 'Sorry a problem occurred while creating this user.');
+            return redirect()->route('users.create');
+        }
     }
 
     /**
@@ -48,7 +70,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view("Backend.Admin.show")->withUser($user);
     }
 
     /**
@@ -59,7 +82,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view("Backend.Admin.edit")->withUser($user);
     }
 
     /**
@@ -71,7 +95,25 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'password' =>'required|min:6',
+
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make('password');
+
+
+        if ($user->save()) {
+            return redirect()->route('users.show', $id);
+        } else {
+            Session::flash('error', 'There was a problem saving the updated user info to the database. Try again later.');
+            return redirect()->route('users.edit', $id);
+        }
     }
 
     /**

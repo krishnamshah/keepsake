@@ -818,7 +818,7 @@ Route::prefix('backend')->middleware('role:superadministrator|administrator|b2b'
         'uses' => 'Auth\UsersController@getLogout',
         'as' => 'backend.logout'
     ]);
-    Route::resource('/users', 'Auth\UserController');
+    Route::resource('/users', 'Auth\UsersController');
 });
 
 Route::Auth();

@@ -31,12 +31,12 @@
                             <div class="form-group form-animate-text" style="margin-top:40px !important;">
                                 <input type="text" class="form-text" required name="hotel_service_name" value="{{$service->service_name}}">
                                 <span class="bar"></span>
-                                <label>Hotel Service Name</label>
+                                <label>Hotel Room Service Name</label>
                             </div>
                             <div class="form-group form-animate-text" style="margin-top:40px !important;">
                                 <input type="text" class="form-text" required name="hotel_service_hour" value="{{$service->service_hour}}">
                                 <span class="bar"></span>
-                                <label>Hotel Serveice Time(Hours)</label>
+                                <label>Hotel Room Serveice Time(Hours)</label>
                             </div>
                             <div class="form-group form-animate-text" style="margin-top:40px !important;">
                                 <span class="bar"></span>
@@ -72,13 +72,13 @@
                             <div class="form-group form-animate-text" style="margin-top:40px !important;">
                                 <input type="text" class="form-text" required name="hotel_service_description" value="{{$service->service_description}}">
                                 <span class="bar"></span>
-                                <label>Hotel service Description</label>
+                                <label>Hotel Room service Description</label>
                             </div>
 
                             <div class="form-group form-animate-text" style="margin-top:40px !important;">
                                 <input type="text" class="form-text" required name="hotel_service_remark"value="{{$service->remarks}}">
                                 <span class="bar"></span>
-                                <label>Hotel Service Remarks</label>
+                                <label>Hotel Room Service Remarks</label>
                             </div>
                             <div class="form-group form-animate-text" style="margin-top:40px !important;">
                                 <span class="bar"></span>

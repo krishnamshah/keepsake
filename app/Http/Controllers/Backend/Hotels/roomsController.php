@@ -87,8 +87,8 @@ class roomsController extends Controller
         $room->no_of_rooms = $request->input('room_no_of_rooms');
 
         $room->save();
-//        $room->HotelRoomFacility()->sync($request->input('facilities_id'));
-//        $room->HotelRoomService()->sync($request->input('facilities_id'));
+        $room->HotelRoomFacility()->sync($request->input('facilities_id'));
+        $room->HotelRoomService()->sync($request->input('services_id'));
 
         return redirect()->back()->with(['success' => 'Created Successfully']);
     }
@@ -118,13 +118,15 @@ class roomsController extends Controller
         $room->hotel_room_type_id = $request->input('room_hotel_room_type_id');
         $room->name = $request->input('room_name');
         $room->no_of_people = $request->input('room_no_of_people');
-        $room->max_extra_bed_up = $request->input('room_max_extra_bed_up');
+        $room->max_extra_bed_up = $request->input('room_max_extra_bed_upto');
         $room->room_cost = $request->input('room_room_cost');
         $room->cost_per_extra_bed = $request->input('room_cost_per_extra_bed');
         $room->no_of_rooms = $request->input('room_no_of_rooms');
 
-        $room->save();
+        $room->update();
         $room->HotelRoomFacility()->sync($request->input('facilities_id'));
+        $room->HotelRoomService()->sync($request->input('services_id'));
+
         return redirect()->route('rooms.details', $room->id)->with(['success' => 'Updated Successfully']);
     }
 

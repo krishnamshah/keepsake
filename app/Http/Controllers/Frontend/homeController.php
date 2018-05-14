@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class homeController extends Controller
@@ -31,6 +32,7 @@ class homeController extends Controller
      */
     public function index()
     {
+        Auth::logout();
         $slider=Slider::limit(5)->get();
         $trendy=null;
         $hot=null;

@@ -33,6 +33,11 @@
                           action="{{route('rooms.update',$room->id)}}">
                         @csrf
                         <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                            <input type="text" class="form-text" value="{{$room->name}}" name="room_name">
+                            <span class="bar"></span>
+                            <label>Name</label>
+                        </div>
+                        <div class="form-group form-animate-text" style="margin-top:40px !important;">
                             {{Form::hidden('room_id',$room->id)}}
                             <div class="form-group form-animate-text" style="margin-top:40px !important;">
                                 <select required name="room_hotel_id">
@@ -56,9 +61,7 @@
                                         <option>Sorry no room types are avilable</option>
                                     @endforelse
                                 </select>
-                                {{--value="{{$room->hotel_room_type_id}}">--}}
-                                <span class="bar"></span>
-                                <label>Room Type</label>
+
                             </div>
 
                             <div class="form-group form-animate-text" style="margin-top:40px !important;">
@@ -70,7 +73,7 @@
 
                             <div class="form-group form-animate-text" style="margin-top:40px !important;">
                                 <input type="text" class="form-text" required name="room_max_extra_bed_upto"
-                                       value="{{$room->max_extra_bed_upto}}">
+                                       value="{{$room->max_extra_bed_up}}">
                                 <span class="bar"></span>
                                 <label>Max Extra Bed Upto</label>
                             </div>
@@ -95,7 +98,7 @@
                                 <span class="bar"></span>
                                 <label>No Of Rooms</label>
                             </div>
-                            <h3> Hotel Facilities</h3>
+                            <h3> Hotel Room Facilities</h3>
                             <div class="col-md-12">
 
                                 @forelse($roomFacility  as $facility)
@@ -111,6 +114,26 @@
 
                                 @empty
                                     Sorry No faciliites Are avilable
+                                @endforelse
+
+                            </div>
+                            <hr/>
+                            <h3> Hotel Room Services</h3>
+                            <div class="col-md-12">
+
+                                @forelse($roomService as $service)
+
+                                    <input type="checkbox" value="{{$service->id}}" name="services_id[]"
+
+                                    @foreach($room->HotelRoomService as $hot)
+                                        @if ($hot->id==$service->id)
+                                            {{"checked"}}
+                                        @endif
+                                    @endforeach>
+                                    {{$service->service_name}} - {{$service->service_description}}
+
+                                @empty
+                                    Sorry No Services Are avilable
                                 @endforelse
 
                             </div>

@@ -84,7 +84,7 @@
 
                 @forelse($roomService as $service)
 
-                    <input type="checkbox" value="{{$service->id}}" name="facilities_id[]">
+                    <input type="checkbox" value="{{$service->id}}" name="service_id[]">
                     {{$service->service_name}} - {{$service->service_description}}
 
                 @empty

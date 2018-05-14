@@ -14,195 +14,130 @@
 //
 
 
-Route::group(['middleware' => 'guest'], function () {
+Route::get('/', [
+    'uses' => 'Frontend\homeController@index',
+    'as' => 'home'
+]);
 
-    Route::get('/', [
-        'uses' => 'Frontend\homeController@index',
-        'as' => 'home'
+
+Route::group(['prefix' => 'Hotel'], function () {
+    Route::get('/Result', [
+        'uses' => 'Frontend\Hotels\hotelController@searchhotels',
+        'as' => 'hotel.result'
     ]);
 
+    Route::get('/Details/{id}', [
+        'uses' => 'Frontend\Hotels\hotelController@detailhotels',
+        'as' => 'hotel.detail'
+    ]);
+    Route::get('/Lists', [
+        'uses' => 'Frontend\Hotels\hotelController@listhotels',
+        'as' => 'hotel.list'
+    ]);
+    Route::get('Room/Book/{id}', [
+        'uses' => 'Frontend\Hotels\hotelController@bookingdetailshotelroom',
+        'as' => 'room.booking'
+    ]);
+    Route::post('Room/Booked/{id}', [
+        'uses' => 'Frontend\Hotels\hotelController@savebooking',
+        'as' => 'room.savebooking'
+    ]);
+    Route::get('Rooom/Booked/Success', [
+        'uses' => 'Frontend\Hotels\hotelController@bookedsuccess',
+        'as' => 'room.bookedsuccess'
+    ]);
+    Route::get('Rooom/Booked/Success/{email}', [
+        'uses' => 'Frontend\Hotels\hotelController@sendemail',
+        'as' => 'hotel.sendemail'
+    ]);
+    Route::get('/hotel/rooms/{id}', [
+        'uses' => 'Frontend\Hotels\hotelController@hotelroomlist',
+        'as' => 'hotel.rooms'
+    ]);
 
-    Route::group(['prefix' => 'Hotel'], function () {
-        Route::get('/Result', [
-            'uses' => 'Frontend\Hotels\hotelController@searchhotels',
-            'as' => 'hotel.result'
-        ]);
-
-        Route::get('/Details/{id}', [
-            'uses' => 'Frontend\Hotels\hotelController@detailhotels',
-            'as' => 'hotel.detail'
-        ]);
-        Route::get('/Lists', [
-            'uses' => 'Frontend\Hotels\hotelController@listhotels',
-            'as' => 'hotel.list'
-        ]);
-        Route::get('Room/Book/{id}', [
-            'uses' => 'Frontend\Hotels\hotelController@bookingdetailshotelroom',
-            'as' => 'room.booking'
-        ]);
-        Route::post('Room/Booked/{id}', [
-            'uses' => 'Frontend\Hotels\hotelController@savebooking',
-            'as' => 'room.savebooking'
-        ]);
-        Route::get('Rooom/Booked/Success', [
-            'uses' => 'Frontend\Hotels\hotelController@bookedsuccess',
-            'as' => 'room.bookedsuccess'
-        ]);
-        Route::get('Rooom/Booked/Success/{email}', [
-            'uses' => 'Frontend\Hotels\hotelController@sendemail',
-            'as' => 'hotel.sendemail'
-        ]);
-        Route::get('/hotel/rooms/{id}', [
-            'uses' => 'Frontend\Hotels\hotelController@hotelroomlist',
-            'as' => 'hotel.rooms'
-        ]);
-
-    });
-    Route::group(['prefix' => 'Tour'], function () {
-        Route::get('/Lists', [
-            'uses' => 'Frontend\Tours\tourController@listtours',
-            'as' => 'tour.list'
-        ]);
-        Route::get('/Result', [
-            'uses' => 'Frontend\Tours\tourController@resulttours',
-            'as' => 'tour.result'
-        ]);
-        Route::get('/Search', [
-            'uses' => 'Frontend\Tours\tourController@searchtours',
-            'as' => 'tour.search'
-        ]);
-        Route::get('/dBook', [
-            'uses' => 'Frontend\Tours\tourController@searchtour',
-            'as' => 'tours.search'
-        ]);
-        Route::get('/Details/{id}', [
-            'uses' => 'Frontend\Tours\tourController@detailtours',
-            'as' => 'tour.detail'
-        ]);
-        Route::get('/Book/{id}', [
-            'uses' => 'Frontend\Tours\tourController@bookingdetailstour',
-            'as' => 'tour.book'
-        ]);
-        Route::post('/Booking/{id}', [
-            'uses' => 'Frontend\Tours\tourController@savebooking',
-            'as' => 'tour.savebooking'
-        ]);
-        Route::get('Tour/Booked/Success', [
-            'uses' => 'Frontend\Tours\tourController@bookedsuccess',
-            'as' => 'tour.bookedsuccess'
-        ]);
-        Route::get('Rooom/Booked/Success/{email}', [
-            'uses' => 'Frontend\Tours\tourController@sendemail',
-            'as' => 'tour.sendemail'
-        ]);
-    });
-    Route::group(['prefix' => 'Vehicle'], function () {
-        Route::get('/Lists', [
-            'uses' => 'Frontend\Vehicles\vehicleController@listvehicles',
-            'as' => 'vehicle.list'
-        ]);
-        Route::get('/Result', [
-            'uses' => 'Frontend\Vehicles\vehicleController@resultvehicles',
-            'as' => 'vehicle.result'
-        ]);
-        Route::get('/Search', [
-            'uses' => 'Frontend\Vehicles\vehicleController@searchvehicles',
-            'as' => 'vehicle.search'
-        ]);
-        Route::get('/dBook', [
-            'uses' => 'Frontend\Vehicles\vehicleController@searchvehicle',
-            'as' => 'vehicles.search'
-        ]);
-        Route::get('/Details/{id}', [
-            'uses' => 'Frontend\Vehicles\vehicleController@detailvehicles',
-            'as' => 'vehicle.detail'
-        ]);
-        Route::get('/Book/{id}', [
-            'uses' => 'Frontend\Vehicles\vehicleController@bookingdetailsvehicle',
-            'as' => 'vehicle.book'
-        ]);
-        Route::post('/Booking/{id}', [
-            'uses' => 'Frontend\Vehicles\vehicleController@savebooking',
-            'as' => 'vehicle.savebooking'
-        ]);
-        Route::get('Vehicle/Booked/Success', [
-            'uses' => 'Frontend\Vehicles\vehicleController@bookedsuccess',
-            'as' => 'vehicle.bookedsuccess'
-        ]);
-        Route::get('Rooom/Booked/Success/{email}', [
-            'uses' => 'Frontend\Vehicles\vehicleController@sendemail',
-            'as' => 'vehicle.sendemail'
-        ]);
-    });
+});
+Route::group(['prefix' => 'Tour'], function () {
+    Route::get('/Lists', [
+        'uses' => 'Frontend\Tours\tourController@listtours',
+        'as' => 'tour.list'
+    ]);
+    Route::get('/Result', [
+        'uses' => 'Frontend\Tours\tourController@resulttours',
+        'as' => 'tour.result'
+    ]);
+    Route::get('/Search', [
+        'uses' => 'Frontend\Tours\tourController@searchtours',
+        'as' => 'tour.search'
+    ]);
+    Route::get('/dBook', [
+        'uses' => 'Frontend\Tours\tourController@searchtour',
+        'as' => 'tours.search'
+    ]);
+    Route::get('/Details/{id}', [
+        'uses' => 'Frontend\Tours\tourController@detailtours',
+        'as' => 'tour.detail'
+    ]);
+    Route::get('/Book/{id}', [
+        'uses' => 'Frontend\Tours\tourController@bookingdetailstour',
+        'as' => 'tour.book'
+    ]);
+    Route::post('/Booking/{id}', [
+        'uses' => 'Frontend\Tours\tourController@savebooking',
+        'as' => 'tour.savebooking'
+    ]);
+    Route::get('Tour/Booked/Success', [
+        'uses' => 'Frontend\Tours\tourController@bookedsuccess',
+        'as' => 'tour.bookedsuccess'
+    ]);
+    Route::get('Rooom/Booked/Success/{email}', [
+        'uses' => 'Frontend\Tours\tourController@sendemail',
+        'as' => 'tour.sendemail'
+    ]);
+});
+Route::group(['prefix' => 'Vehicle'], function () {
+    Route::get('/Lists', [
+        'uses' => 'Frontend\Vehicles\vehicleController@listvehicles',
+        'as' => 'vehicle.list'
+    ]);
+    Route::get('/Result', [
+        'uses' => 'Frontend\Vehicles\vehicleController@resultvehicles',
+        'as' => 'vehicle.result'
+    ]);
+    Route::get('/Search', [
+        'uses' => 'Frontend\Vehicles\vehicleController@searchvehicles',
+        'as' => 'vehicle.search'
+    ]);
+    Route::get('/dBook', [
+        'uses' => 'Frontend\Vehicles\vehicleController@searchvehicle',
+        'as' => 'vehicles.search'
+    ]);
+    Route::get('/Details/{id}', [
+        'uses' => 'Frontend\Vehicles\vehicleController@detailvehicles',
+        'as' => 'vehicle.detail'
+    ]);
+    Route::get('/Book/{id}', [
+        'uses' => 'Frontend\Vehicles\vehicleController@bookingdetailsvehicle',
+        'as' => 'vehicle.book'
+    ]);
+    Route::post('/Booking/{id}', [
+        'uses' => 'Frontend\Vehicles\vehicleController@savebooking',
+        'as' => 'vehicle.savebooking'
+    ]);
+    Route::get('Vehicle/Booked/Success', [
+        'uses' => 'Frontend\Vehicles\vehicleController@bookedsuccess',
+        'as' => 'vehicle.bookedsuccess'
+    ]);
+    Route::get('Rooom/Booked/Success/{email}', [
+        'uses' => 'Frontend\Vehicles\vehicleController@sendemail',
+        'as' => 'vehicle.sendemail'
+    ]);
 });
 
-//Route::get('/register', [
-//    'uses' => 'UserController@getRegister',
-//    'as' => 'user.register'
-//]);
-//Route::post('/register', [
-//    'uses' => 'UserController@postRegister',
-//    'as' => 'user.register'
-//]);
-//Route::get('/login', [
-//    'uses' => 'UserController@getLogin',
-//    'as' => 'login'
-//]);
-//Route::post('/login', [
-//    'uses' => 'UserController@postLogin',
-//    'as' => 'user.login'
-//]);
-//Route::get('/password/request', [
-//    'uses' => 'UserController@getPasswordRequest',
-//    'as' => 'password.request'
-//]);
-//Route::get('/logout', [
-//    'uses' => 'UserController@getLogout',
-//    'as' => 'logout'
-//]);
-//Route::post('/logout', [
-//    'uses' => 'UserController@getLogout',
-//    'as' => 'logout'
-//]);
-//Route::get('/profile',function (){
-//    return view('Backend.Admin.dashboard');
-//})->name('profile');
-//
-//Route::get('user/verify/{confirmationCode}', [
-//    'as' => 'confirmation',
-//    'uses' => 'UserController@confirm'
-//]);
-//
-//Route::get('/user',[
-//    'uses'=>'UserController@getUsersList',
-//    'as'=>'users'
-//    ]);
-//
-//Route::get('/admin',function (){
-//    return view('Backend.Admin.dashboard');
-//})->name('admin');
-//Route::get('/sub-admin',function (){
-//    return view('Backend.Sub-Admin.dashboard');
-//})->name('sub-admin');
-//Route::get('/agent',function (){
-//    return view('Backend.Agent.dashboard');
-//})->name('agent');
-//Route::get('/member',function (){
-//    return view('Backend.Member.dashboard');
-//})->name('member');
-//Route::get('/customer',function (){
-//    return view('Backend.Customer.dashboard');
-//})->name('customer');
-//
-//Route::get('');
 Route::prefix('backend')->middleware('role:superadministrator|administrator|b2b')->group(function () {
     Route::get('/', function () {
         return view('Backend.Users.login');
     })->name('login');
-    Route::post('/', [
-        'uses' => 'Backend\UsersController@postLogin',
-        'as' => 'login'
-    ]);
+
 
     Route::group(['prefix' => 'admin'], function () {
 
@@ -575,36 +510,36 @@ Route::prefix('backend')->middleware('role:superadministrator|administrator|b2b'
             });
             Route::group(['prefix' => 'HotelOffers'], function () {
                 Route::get('/', [
-                    'uses' => 'Backend\Hotel_offers\hotelOffersController@index',
+                    'uses' => 'Backend\Hotel_Offers\hotelOffersController@index',
                     'as' => 'HotelOffers.list'
                 ]);
                 Route::post('/create', [
-                    'uses' => 'Backend\Hotel_offers\hotelOffersController@createHotelOffer',
+                    'uses' => 'Backend\Hotel_Offers\hotelOffersController@createHotelOffer',
                     'as' => 'HotelOffers.add'
                 ]);
                 Route::get('/AddHotels/{id}', [
-                    'uses' => 'Backend\Hotel_offers\hotelOffersController@addHotelsInOffers',
+                    'uses' => 'Backend\Hotel_Offers\hotelOffersController@addHotelsInOffers',
                     'as' => 'HotelsOffer.addHotels'
                 ]);
                 Route::post('/SaveHotels', [
-                    'uses' => 'Backend\Hotel_offers\hotelOffersController@saveaddHotelsInOffers',
+                    'uses' => 'Backend\Hotel_Offers\hotelOffersController@saveaddHotelsInOffers',
                     'as' => 'HotelOffer.SaveHotels'
                 ]);
                 Route::get('/HotelOffersDetails/{id}', [
-                    'uses' => 'Backend\Hotel_offers\hotelOffersController@viewDetails',
+                    'uses' => 'Backend\Hotel_Offers\hotelOffersController@viewDetails',
                     'as' => 'HotelsOffer.details'
                 ]);
                 Route::get('/HotelOfferEdit/{id}', [
-                    'uses' => 'Backend\Hotel_offers\hotelOffersController@editOffer',
+                    'uses' => 'Backend\Hotel_Offers\hotelOffersController@editOffer',
                     'as' => 'HotelsOffer.edit'
                 ]);
                 Route::get('/HotelsOffersHotelsEdit/{id}', [
-                    'uses' => 'Backend\Hotel_offers\hotelOffersController@editHotelsInOffer',
+                    'uses' => 'Backend\Hotel_Offers\hotelOffersController@editHotelsInOffer',
                     'as' => 'HotelsOfferHotels.edit'
                 ]);
 
                 Route::post('/update', [
-                    'uses' => 'Backend\Hotel_offers\hotelOffersController@updateHotelOffers',
+                    'uses' => 'Backend\Hotel_Offers\hotelOffersController@updateHotelOffers',
                     'as' => 'HotelsOffer.update'
                 ]);
             });
@@ -818,7 +753,7 @@ Route::prefix('backend')->middleware('role:superadministrator|administrator|b2b'
         'uses' => 'Auth\UsersController@getLogout',
         'as' => 'backend.logout'
     ]);
-    Route::resource('/users', 'Auth\UserController');
+    Route::resource('/users', 'Auth\UsersController');
 });
 
 Route::Auth();

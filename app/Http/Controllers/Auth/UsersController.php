@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -88,6 +89,7 @@ class UsersController extends Controller
     public function getLogout()
     {
         Auth::logout();
-        return Redirect::route('home');
+        return Redirect::route('/');
     }
+
 }

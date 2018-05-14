@@ -18,8 +18,8 @@
             <tr>
 
                 <td>{{$room->name}}</td>
-                <td>{{$room->hotel_room_type_id}}</td>
-                <td>{{$room->hotel_id}}</td>
+                <td>{{$room->roomTypes->room_type}}</td>
+                <td>{{$room->hotels->hotel_name}}</td>
                 <td>{{$room->room_cost}}</td>
                 <td>@forelse($room->HotelRoomFacility as $room_facility)
                         {{$room_facility->title}} ,

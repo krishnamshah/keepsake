@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Backend\Hotels;
 use App\Http\Controllers\Controller;
 use App\Models\HotelRoomFacility;
 use App\Models\HotelRoomService;
+use App\Models\HotelRoomType;
 use App\Models\Hotels;
 use App\Models\Rooms;
 use Illuminate\Http\Request;
@@ -31,12 +32,16 @@ class roomsController extends Controller
     public function listRoom()
     {
         $rooms = Rooms::all();
+        $hotels = Hotels::all();
+        $roomTypes = HotelRoomType::all();
         $roomFacility = HotelRoomFacility::where('enable', 1)->get();
         $roomService = HotelRoomService::where('enable', 1)->get();
         return view('Backend.Hotels.Rooms.index', [
                 'rooms' => $rooms,
                 'roomFacility' => $roomFacility,
-                'roomService' => $roomService
+                'roomService' => $roomService,
+                'hotels' => $hotels,
+                'roomTypes' => $roomTypes
             ]
         );
     }
@@ -82,15 +87,27 @@ class roomsController extends Controller
         $room->no_of_rooms = $request->input('room_no_of_rooms');
 
         $room->save();
-        $room->HotelRoomFacility()->sync($request->input('facilities_id'));
+//        $room->HotelRoomFacility()->sync($request->input('facilities_id'));
+//        $room->HotelRoomService()->sync($request->input('facilities_id'));
+
         return redirect()->back()->with(['success' => 'Created Successfully']);
     }
 
     public function editRoom($id)
     {
         $room = Rooms::findorFail($id);
-        $roomFacility = HotelRoomFacility::all();
-        return view('Backend.Hotels.Rooms.edit', ['room' => $room, 'roomFacility' => $roomFacility]);
+        $hotels = Hotels::all();
+        $roomTypes = HotelRoomType::all();
+        $roomFacility = HotelRoomFacility::where('enable', 1)->get();
+        $roomService = HotelRoomService::where('enable', 1)->get();
+
+        return view('Backend.Hotels.Rooms.edit',
+            ['room' => $room,
+                'roomFacility' => $roomFacility,
+                'roomService' => $roomService,
+                'hotels' => $hotels,
+                'roomTypes' => $roomTypes
+            ]);
     }
 
     public function storeRoom(Request $request)

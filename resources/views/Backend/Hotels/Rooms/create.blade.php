@@ -7,14 +7,29 @@
 
 
             <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                <input type="text" class="form-text" required name="room_hotel_id">
-                <span class="bar"></span>
-                <label>Hotel ID</label>
+                <label>Hotel</label>
+                <select required name="room_hotel_id">
+                    <option>Select your Hotel</option>
+                    @forelse($hotels as $hotel)
+                        <option value="{{$hotel->id}}">{{$hotel->hotel_name}}</option>
+                    @empty
+                        <option>Sorry no hotle are avilable</option>
+                    @endforelse
+                </select>
             </div>
             <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                <input type="text" class="form-text" required name="room_hotel_room_type_id">
-                <span class="bar"></span>
-                <label>Room Type ID</label>
+                <label>Room Type</label>
+                <select required name="room_hotel_room_type_id">
+                    <option>Select your room types</option>
+                    @forelse($roomTypes as $roomType)
+                        <option value="{{$roomType->id}}">{{$roomType->room_type}}</option>
+                    @empty
+                        <option>Sorry no room types are avilable</option>
+                    @endforelse
+                </select>
+                {{--value="{{$room->hotel_room_type_id}}">--}}
+
+
             </div>
             <div class="form-group form-animate-text" style="margin-top:40px !important;">
                 <input type="text" class="form-text" required name="room_name">

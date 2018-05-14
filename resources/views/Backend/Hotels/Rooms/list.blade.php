@@ -6,8 +6,10 @@
         <tr>
             <th>Room Name</th>
             <th>Room Type</th>
+            <th>Hotel Name</th>
             <th>Rate per Day</th>
             <th>Room Facility</th>
+            <th>Room Srvices</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -16,12 +18,21 @@
             <tr>
 
                 <td>{{$room->name}}</td>
-                <td>{{$room->type}}</td>
-                <td>{{$room->room_rate}}</td>
-                <td>{{$room->room_facility}}</td>
+                <td>{{$room->hotel_room_type_id}}</td>
+                <td>{{$room->hotel_id}}</td>
+                <td>{{$room->room_cost}}</td>
+                <td>@forelse($room->HotelRoomFacility as $room_facility)
+                        {{$room_facility->title}} ,
+                    @empty
+                    @endforelse
+                </td>
+                <td>@forelse($room->HotelRoomService as $room_service)
+                        {{$room_service->service_name}} ,
+                    @empty
+                    @endforelse{{$room->room_facility}}</td>
                 <td>
-                   <a href="{{route('rooms.details',$room->id)}}"> <span class="label label-info">View</span></a>
-                    <a href="{{route('rooms.edit',$room->id)}}" ><span class="label label-warning">Edit</span></a>
+                    <a href="{{route('rooms.details',$room->id)}}"> <span class="label label-info">View</span></a>
+                    <a href="{{route('rooms.edit',$room->id)}}"><span class="label label-warning">Edit</span></a>
                     {{--<a href="{{route('bookingsRoom.add',[$data['location_city'],$data['start_date'],$data['end_date'],$data['no_of_people']])}}"><input type="submit" class="btn btn-circle btn-sm" value="Book"></a>--}}
 
                     {{--<a href="{{route((($room->user->status=='active')?'rooms.deactivate':'rooms.activate'),$room->id)}}"> <span class="label label-primary">{{($room ->user->status=='active')?'Deactive':'Active'}}</span></a>--}}

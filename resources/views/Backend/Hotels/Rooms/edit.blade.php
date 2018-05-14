@@ -25,58 +25,76 @@
                 </div>
             </div>
         </div>
-            <div class="col-md-12">
-                <!-- start: Content -->
-                <div class="form-element">
-                    <div class="col-md-12 padding-0">
-                        <form method="patch" enctype="multipart/form-data"
-                              action="{{route('rooms.update',$room->id)}}">
-                            @csrf<div class="form-group form-animate-text" style="margin-top:40px !important;">
-                                {{Form::hidden('room_id',$room->id)}}
-                                <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                                    <input type="text" class="form-text" required name="room_hotel_id" value="{{$room->hotel_id}}">
-                                    <span class="bar"></span>
-                                    <label>Hotel ID</label>
-                                </div>
-                                <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                                    <input type="text" class="form-text" required name="room_hotel_room_type_id" value="{{$room->hotel_room_type_id}}">
-                                    <span class="bar"></span>
-                                    <label>Room Type</label>
-                                </div>
-                                <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                                    <input type="text" class="form-text" required name="room_type" value="{{$room->type}}">
-                                    <span class="bar"></span>
-                                    <label>Type</label>
-                                </div>
-                                <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                                    <input type="text" class="form-text" required name="room_no_of_people" value="{{$room->no_of_people}}">
-                                    <span class="bar"></span>
-                                    <label>No of People</label>
-                                </div>
+        <div class="col-md-12">
+            <!-- start: Content -->
+            <div class="form-element">
+                <div class="col-md-12 padding-0">
+                    <form method="patch" enctype="multipart/form-data"
+                          action="{{route('rooms.update',$room->id)}}">
+                        @csrf
+                        <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                            {{Form::hidden('room_id',$room->id)}}
+                            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                                <select required name="room_hotel_id">
+                                    <option>Select your Hotel</option>
+                                    @forelse($hotels as $hotel)
+                                        <option value="{{$hotel->id}}" {{($hotel->id==$room->hotel_id?'Selected':'')}}>{{$hotel->hotel_name}}</option>
+                                    @empty
+                                        <option>Sorry no hotle are avilable</option>
+                                    @endforelse
+                                </select>
 
-                                <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                                    <input type="text" class="form-text" required name="room_max_extra_bed_upto" value="{{$room->max_extra_bed_upto}}">
-                                    <span class="bar"></span>
-                                    <label>Max Extra Bed Upto</label>
-                                </div>
+                            </div>
+                            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                                <select required name="room_hotel_room_type_id">
+                                    <option>Select your room types</option>
+                                    @forelse($roomTypes as $roomType)
+                                        <option value="{{$roomType->id}}"
+                                        {{($roomType->id==$room->hotel_room_type_id)?'Selected':''}}>
+                                        {{$roomType->room_type}}</option>
+                                    @empty
+                                        <option>Sorry no room types are avilable</option>
+                                    @endforelse
+                                </select>
+                                {{--value="{{$room->hotel_room_type_id}}">--}}
+                                <span class="bar"></span>
+                                <label>Room Type</label>
+                            </div>
 
-                                <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                                    <input type="text" class="form-text" required name="room_room_cost" value="{{$room->room_cost}}">
-                                    <span class="bar"></span>
-                                    <label>Room Cost</label>
-                                </div>
+                            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                                <input type="text" class="form-text" required name="room_no_of_people"
+                                       value="{{$room->no_of_people}}">
+                                <span class="bar"></span>
+                                <label>No of People</label>
+                            </div>
 
-                                <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                                    <input type="text" class="form-text" required name="room_cost_per_extra_bed" value="{{$room->cost_per_extra_bed}}">
-                                    <span class="bar"></span>
-                                    <label>Cost Per Extra bed</label>
-                                </div>
+                            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                                <input type="text" class="form-text" required name="room_max_extra_bed_upto"
+                                       value="{{$room->max_extra_bed_upto}}">
+                                <span class="bar"></span>
+                                <label>Max Extra Bed Upto</label>
+                            </div>
 
-                                <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                                    <input type="text" class="form-text" required name="room_no_of_rooms" value="{{$room->no_of_rooms}}">
-                                    <span class="bar"></span>
-                                    <label>No Of Rooms</label>
-                                </div>
+                            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                                <input type="text" class="form-text" required name="room_room_cost"
+                                       value="{{$room->room_cost}}">
+                                <span class="bar"></span>
+                                <label>Room Cost</label>
+                            </div>
+
+                            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                                <input type="text" class="form-text" required name="room_cost_per_extra_bed"
+                                       value="{{$room->cost_per_extra_bed}}">
+                                <span class="bar"></span>
+                                <label>Cost Per Extra bed</label>
+                            </div>
+
+                            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                                <input type="text" class="form-text" required name="room_no_of_rooms"
+                                       value="{{$room->no_of_rooms}}">
+                                <span class="bar"></span>
+                                <label>No Of Rooms</label>
+                            </div>
                             <h3> Hotel Facilities</h3>
                             <div class="col-md-12">
 
@@ -99,10 +117,10 @@
                             <div class="form-group form-animate-text" style="margin-top:40px !important;">
                                 <input class="submit btn btn-success" value="Submit" type="submit">
                             </div>
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
+        </div>
     </div>
 
 

@@ -40,7 +40,7 @@
                             <th>{{$user->id}}</th>
                             <th>{{$user->name}}</th>
                             <th>{{$user->email}}</th>
-                            <th><a class="button is-outlined" href="{{route('users.edit',$user->id)}}">Edit</a></th>
+                            <th>                  <td class="has-text-right"><a class="button is-outlined m-r-5" href="{{route('users.show', $user->id)}}">View</a><a class="button is-outlined" href="{{route('users.edit',$user->id)}}">Edit</a></th>
                         </tr>
                     @endforeach
                     </tbody>

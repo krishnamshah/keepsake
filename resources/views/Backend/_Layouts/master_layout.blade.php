@@ -39,6 +39,7 @@
 </div>
 @include('Backend._Layouts._includes.mobile_nav')
 @include('Backend._Layouts._includes.footer')
+@yield('script')<!-- script -->
 
 
 

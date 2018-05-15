@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Role;
 use DB;
 use Session;
 use Illuminate\Support\Facades\Hash;
@@ -70,7 +71,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
+
+        $user = User::where('id', $id)->with('roles')->first();
         return view("Backend.Admin.show")->withUser($user);
     }
 
@@ -82,8 +84,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        return view("Backend.Admin.edit")->withUser($user);
+        $roles = Role::all();
+        $user = User::where('id', $id)->with('roles')->first();
+        return view("manage.users.edit")->withUser($user)->withRoles($roles);
     }
 
     /**
@@ -107,13 +110,18 @@ class UsersController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make('password');
 
+        $user->save();
 
-        if ($user->save()) {
-            return redirect()->route('users.show', $id);
-        } else {
-            Session::flash('error', 'There was a problem saving the updated user info to the database. Try again later.');
-            return redirect()->route('users.edit', $id);
-        }
+        $user->syncRoles(explode(',', $request->roles));
+        return redirect()->route('users.show', $id);
+//
+//
+//        if ($user->save()) {
+//            return redirect()->route('users.show', $id);
+//        } else {
+//            Session::flash('error', 'There was a problem saving the updated user info to the database. Try again later.');
+//            return redirect()->route('users.edit', $id);
+//        }
     }
 
     /**

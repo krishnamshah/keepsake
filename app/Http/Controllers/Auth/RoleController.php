@@ -58,7 +58,7 @@ class RoleController extends Controller
       $role->save();
 
       if ($request->permissions) {
-        $role->syncPermissions(explode(',', $request->permissions));
+          $role->syncPermissions( $request->permissions);
       }
 
       Session::flash('success', 'Successfully created the new '. $role->display_name . ' role in the database.');
@@ -110,7 +110,7 @@ class RoleController extends Controller
       $role->save();
 
       if ($request->permissions) {
-        $role->syncPermissions(explode(',', $request->permissions));
+        $role->syncPermissions( $request->permissions);
       }
 
       Session::flash('success', 'Successfully update the '. $role->display_name . ' role in the database.');

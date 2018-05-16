@@ -86,7 +86,7 @@ class UsersController extends Controller
     {
         $roles = Role::all();
         $user = User::where('id', $id)->with('roles')->first();
-        return view("manage.users.edit")->withUser($user)->withRoles($roles);
+        return view("Backend.Admin.edit")->withUser($user)->withRoles($roles);
     }
 
     /**
@@ -112,7 +112,7 @@ class UsersController extends Controller
 
         $user->save();
 
-        $user->syncRoles(explode(',', $request->roles));
+        $user->syncRoles($request->roles);
         return redirect()->route('users.show', $id);
 //
 //

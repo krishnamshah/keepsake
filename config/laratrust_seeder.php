@@ -11,11 +11,21 @@ return [
             'users' => 'c,r,u,d',
             'profile' => 'r,u'
         ],
+
+        'sub-admin' => [
+            'users' => 'c,r,u,d',
+            'profile' => 'r,u'
+        ],
+
         'b2b' => [
             'profile' => 'r,u'
         ],
         'customer' => [
             'profile' => 'r,u'
+        ],
+
+        'owner' => [
+            'profile' => 'c,r,u'
         ],
     ],
     'permission_structure' => [],

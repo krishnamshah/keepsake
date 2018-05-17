@@ -60,8 +60,9 @@
                         <div class="col-md-12">
                             @forelse($roles as $role)
 
-                                <input type="checkbox" value="{{$role->id}}" }}
-                                name="roles[]">
+                                <input type="checkbox" value="{{$role->id}}" name="roles[]"
+                                {{($user->hasRole($role->name))?'checked':''}} >
+
                                 {{$role->display_name}}
 
                             @empty
@@ -69,6 +70,7 @@
                             @endforelse
 
                         </div>
+
                         <div class="form-group form-animate-text" style="margin-top:40px !important;">
                             <button class="submit btn btn-success">Update User</button>
                         </div>

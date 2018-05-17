@@ -19,14 +19,16 @@
     <div id="content">
 
 
+
         <div class="col-md-12" style="padding:20px;">
             <h1>Welcome {{ Auth::user()->name }} !!!</h1>
-
+ @role('superadministrator')
             <a href="{{route('users.create')}}" class="button button-blue"><i class="fa fa-user-plus"></i>Create User
             </a>
         </div>
-
+@endrole
         <hr>
+        @role(['superadministrator','administrator'])
 
         <table class="table">
             <thead>
@@ -40,20 +42,22 @@
 
             <tbody>
             @foreach($users as $user)
+{{--                @if(Auth::User()->hasRole('administrator'))--}}
                 <tr>
                     <th>{{$user->id}}</th>
                     <th>{{$user->name}}</th>
                     <th>{{$user->email}}</th>
                     <th>
                     <td class="has-text-right"><a class="button is-outlined m-r-5"
-                                                  href="{{route('users.show', $user->id)}}">View</a><a
-                                class="button is-outlined" href="{{route('users.edit',$user->id)}}">Edit</a>
+                                                  href="{{route('users.show', $user->id)}}">View</a>
+                        <a class="button is-outlined" href="{{route('users.edit',$user->id)}}">Edit</a>
                     </th>
                 </tr>
+                {{--@endif--}}
             @endforeach
             </tbody>
         </table>
-
+        @endrole
     </div>
     <!-- end: content -->
 

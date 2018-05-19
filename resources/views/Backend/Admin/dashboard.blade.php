@@ -4,7 +4,6 @@
     <link rel="stylesheet" type="text/css"
           href="{{URL::asset('BackendTheme/asset/css/plugins/font-awesome.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{URL::asset('BackendTheme/asset/css/plugins/animate.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{URL::asset('BackendTheme/asset/css/plugins/nouislider.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{URL::asset('BackendTheme/asset/css/plugins/select2.min.css')}}"/>
     <link rel="stylesheet" type="text/css"
           href="{{URL::asset('BackendTheme/asset/css/plugins/ionrangeslider/ion.rangeSlider.css')}}"/>
@@ -19,38 +18,41 @@
     <div id="content">
 
 
-
         <div class="col-md-12" style="padding:20px;">
             <h1>Welcome {{ Auth::user()->name }} !!!</h1>
- @role('superadministrator')
+            @role('superadministrator')
             <a href="{{route('users.create')}}" class="button button-blue"><i class="fa fa-user-plus"></i>Create User
             </a>
         </div>
-@endrole
+        @endrole
         <hr>
         @role(['superadministrator','administrator'])
 
         <table class="table">
             <thead>
             <tr>
+                <th>SN</th>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Actions</th>
             </tr>
             </thead>
-
+            <?php
+            $i = 1;
+            ?>
             <tbody>
             @foreach($users as $user)
-{{--                @if(Auth::User()->hasRole('administrator'))--}}
+                {{--                @if(Auth::User()->hasRole('administrator'))--}}
                 <tr>
-                    <th>{{$user->id}}</th>
+                    <th>{{$i++}}</th>
+                    <th>{{$user->user_id}}</th>
                     <th>{{$user->name}}</th>
                     <th>{{$user->email}}</th>
                     <th>
                     <td class="has-text-right"><a class="button is-outlined m-r-5"
-                                                  href="{{route('users.show', $user->id)}}">View</a>
-                        <a class="button is-outlined" href="{{route('users.edit',$user->id)}}">Edit</a>
+                                                  href="{{route('users.show', $user->user_id)}}">View</a>
+                        <a class="button is-outlined" href="{{route('users.edit',$user->user_id)}}">Edit</a>
                     </th>
                 </tr>
                 {{--@endif--}}
@@ -72,7 +74,6 @@
     <script src="{{URL::asset('BackendTheme/asset/js/plugins/jquery.nicescroll.js')}}"></script>
     <script src="{{URL::asset('BackendTheme/asset/js/plugins/jquery.mask.min.js')}}"></script>
     <script src="{{URL::asset('BackendTheme/asset/js/plugins/select2.full.min.js')}}"></script>
-    <script src="{{URL::asset('BackendTheme/asset/js/plugins/nouislider.min.js')}}"></script>
     <script src="{{URL::asset('BackendTheme/asset/js/plugins/jquery.validate.min.js')}}"></script>
 
 
@@ -216,36 +217,6 @@
                 };
 
             $('.mask-sp_celphones').mask(SPMaskBehavior, spOptions);
-
-
-            var slider = document.getElementById('noui-slider');
-            noUiSlider.create(slider, {
-                start: [20, 80],
-                connect: true,
-                range: {
-                    'min': 0,
-                    'max': 100
-                }
-            });
-
-            var slider = document.getElementById('noui-range');
-            noUiSlider.create(slider, {
-                start: [20, 80], // Handle start position
-                step: 10, // Slider moves in increments of '10'
-                margin: 20, // Handles must be more than '20' apart
-                connect: true, // Display a colored bar between the handles
-                direction: 'rtl', // Put '0' at the bottom of the slider
-                orientation: 'vertical', // Orient the slider vertically
-                behaviour: 'tap-drag', // Move handle on tap, bar is draggable
-                range: { // Slider can select '0' to '100'
-                    'min': 0,
-                    'max': 100
-                },
-                pips: { // Show a scale with the slider
-                    mode: 'steps',
-                    density: 2
-                }
-            });
 
 
             $(".select2-A").select2({

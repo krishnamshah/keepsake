@@ -20,7 +20,8 @@ class dashboardController extends Controller
     }
 
     public function index(){
-        $users=User::whereRoleIs(['b2b','customer','kei'])->get();
+        $users=User::whereRoleIs(['administrator','b2b','customer','kei'])->get();
+       
         return view('Backend.Admin.dashboard',['users'=>$users]);
     }
 }

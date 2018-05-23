@@ -16,6 +16,10 @@ use Illuminate\Http\Request;
 
 class hotelOffersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $hotel_offers = hotels_offers::all();

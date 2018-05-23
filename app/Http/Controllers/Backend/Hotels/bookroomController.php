@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Storage;
 
 class bookroomController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $booking = '';

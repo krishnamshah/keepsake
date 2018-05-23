@@ -9,6 +9,10 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 class sliderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -133,7 +133,7 @@ Route::group(['prefix' => 'Vehicle'], function () {
     ]);
 });
 
-Route::prefix('backend')->middleware('role:superadministrator|administrator|b2b')->group(function () {
+Route::prefix('backend')->group(function () {
     Route::get('/', function () {
         return view('Backend.Users.login');
     })->name('login');
@@ -744,18 +744,18 @@ Route::prefix('backend')->middleware('role:superadministrator|administrator|b2b'
         });
     });
 
-
-    Route::get('/logout', [
-        'uses' => 'Auth\UsersController@getLogout',
-        'as' => 'backend.logout'
-    ]);
-    Route::post('/logout', [
-        'uses' => 'Auth\UsersController@getLogout',
-        'as' => 'backend.logout'
-    ]);
+//
+//    Route::get('/logout', [
+//        'uses' => 'Auth\UsersController@getLogout',
+//        'as' => 'backend.logout'
+//    ]);
+//    Route::post('/logout', [
+//        'uses' => 'Auth\UsersController@getLogout',
+//        'as' => 'backend.logout'
+//    ]);
     Route::resource('/users', 'Auth\UsersController');
     Route::resource('/permissions', 'Auth\PermissionController', ['except' => 'destroy']);
     Route::resource('/roles', 'Auth\RoleController', ['except' => 'destroy']);
 });
 
-Route::Auth();
+Auth::routes();

@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Storage;
 
 class customerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
         $customer=Customers::all();
         return view('Backend.Customer.index',['customers'=>$customer]);

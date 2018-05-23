@@ -8,6 +8,10 @@ use App\Models\HotelService;
 
 class hotelsServicesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //
     public function list(){
         $services=HotelService::all();

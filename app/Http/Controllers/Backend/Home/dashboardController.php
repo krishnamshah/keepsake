@@ -12,5 +12,8 @@ use Illuminate\Support\Facades\Storage;
 
 class dashboardController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 }

@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Models\HotelFacility;
 class hotelsFacilitiesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //
     public function list(){
         $facilities=HotelFacility::all();

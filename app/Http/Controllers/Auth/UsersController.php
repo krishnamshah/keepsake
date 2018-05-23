@@ -139,7 +139,8 @@ class UsersController extends Controller
     public function getLogout()
     {
         Auth::logout();
-        return Redirect::route('/');
+
     }
+
 
 }

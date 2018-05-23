@@ -41,8 +41,13 @@
 @include('Backend._Layouts._includes.right_nav')
 </div>
 @include('Backend._Layouts._includes.mobile_nav')
-@include('Backend._Layouts._includes.footer')
 
+<!-- start: Javascript -->
+<script src="{{URL::asset('BackendTheme/asset/js/jquery.min.js')}}"></script>
+<script src="{{URL::asset('BackendTheme/asset/js/jquery.ui.min.js')}}"></script>
+<script src="{{URL::asset('BackendTheme/asset/js/bootstrap.min.js')}}"></script>
+
+@yield('script')
 
 
 

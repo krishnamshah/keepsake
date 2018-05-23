@@ -12,6 +12,8 @@
     <title>{{env('APP_NAME')}} - @yield('title')</title>
 
     <!-- start: Css -->
+    <!-- start: Css -->
+
     <link rel="stylesheet" type="text/css" href="{{URL::asset('BackendTheme/asset/css/bootstrap.min.css')}}">
 
    @yield('css') <!-- plugins -->
@@ -23,12 +25,13 @@
     <link href="{{URL::asset('BackendTheme/asset/css/style.css')}}" rel="stylesheet">
     <!-- end: Css -->
 
-    <link rel="shortcut icon" href="{{URL::asset('BackendTheme/asset/img/logomi.png')}}">
+    <link rel="shortcut icon" href="URL::asset('BackendTheme/asset/img/logomi.png')}}">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')}}"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js')}}"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 </head>
 <body id="mimin" class="dashboard">
 @include('Backend._Layouts._includes.header')
@@ -39,7 +42,7 @@
 </div>
 @include('Backend._Layouts._includes.mobile_nav')
 @include('Backend._Layouts._includes.footer')
-@yield('script')<!-- script -->
+
 
 
 

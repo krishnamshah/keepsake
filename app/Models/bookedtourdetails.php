@@ -10,9 +10,12 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class bookedtourdetails extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'tourtraveller_booked';
     protected $fillable = [
         'booking_id',
@@ -22,6 +25,8 @@ class bookedtourdetails extends Model
         'address',
         'phone_no'
     ];
+    protected $dates = ['deleted_at'];
+
     public function bookingTour(){
         return $this->belongsTo('App\Models\bookingTour','id');
     }

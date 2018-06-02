@@ -15,15 +15,15 @@ class CreateVehiclesTable extends Migration
     {
         //
         Schema::create('vehicle', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('name');
             $table->string('locations');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->enum('type', ['car', 'bus', 'zip', 'suv']);
-            $table->string('no_of_People');
+            $table->integer('no_of_People')->default(1)->nullable();
             $table->enum('gare', ['mannual', 'automatic'])->default('mannual');
             $table->enum('fule_option',['petrol','deseal'])->default('petrol');
-            $table->string('rate_perday');
+            $table->float('rate_perday',8,2)->default(00.00)->nullable();
             $table->text('cost_includes_excludes')->nullable();
             $table->enum('diving_option',['with driver','without driver'])->default('with driver');
             $table->enum('driving_option',['4wd','2wd'])->default('2wd');
@@ -33,6 +33,7 @@ class CreateVehiclesTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

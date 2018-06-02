@@ -19,6 +19,7 @@ class CreateTourGallerysTable extends Migration
             $table->integer('tour_id')->unsigned();;
             $table->foreign('tour_id')->references('id')->on('tour_package')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

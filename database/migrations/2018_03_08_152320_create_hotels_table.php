@@ -18,10 +18,11 @@ class CreateHotelsTable extends Migration
         Schema::create('hotels', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('hotel_name');
-            $table->string('province');
-            $table->string('district');
+            $table->text('description')->nullable();
+            $table->string('province')->nullable();
+            $table->string('district')->nullable();
             $table->string('city');
-            $table->string('street');
+            $table->string('street')->nullable();
             $table->string('house_no')->nullable();
             $table->string('hotel_logo')->nullable();
             $table->string('google_coordinate_latitude')->nullable();
@@ -37,10 +38,10 @@ class CreateHotelsTable extends Migration
             $table->integer('updated_user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('updated_user_id')->references('id')->on('users');
-            $table->timestamps();
             $table->enum('hotel_star_rating',['1','2','3','4','5','6','7'])->nullable();
             $table->string('rating_agency');
-           
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

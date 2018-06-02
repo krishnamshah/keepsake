@@ -14,14 +14,16 @@ class CreateHotelRoomBookedGuestDetailsTable extends Migration
     public function up()
     {
         Schema::create('hotel_room_booked_guest_details', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('booking_id');
+            $table->increments('id')->unsigned();
+            $table->integer('booking_id')->unsigned();
             $table->string('name');
             $table->enum('gender',['male','female','other']);
-            $table->date('dob');
+            $table->date('dob')->default(date("Y-m-d"));
             $table->string('address');
-            $table->integer('phone_no');
+            $table->string('phone_no')->default('0000000000');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

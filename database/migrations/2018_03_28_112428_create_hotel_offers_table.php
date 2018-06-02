@@ -14,12 +14,13 @@ class CreateHotelOffersTable extends Migration
     public function up()
     {
         Schema::create('hotel_offers', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('offername');
             $table->text('description')->nullable();
-            $table->date('offer_start_date')->nullable();
-            $table->date('offer_end_date')->nullable();
+            $table->date('offer_start_date')->default(date('Y-m-d'))->nullable();
+            $table->date('offer_end_date')->default(date('Y-m-d'))->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

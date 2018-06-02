@@ -21,6 +21,7 @@ class CreateSliderTable extends Migration
             $table->string('image')->nullable();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -20,6 +20,7 @@ class CreateHotelServiceHotelRoomsTable extends Migration
             $table->foreign('hotel_room_service_id')->references('id')->on('hotel_room_services')->onDelete('cascade');
             $table->foreign('hotel_rooms_id')->references('id')->on('hotel_rooms')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -4,9 +4,9 @@
            width="100%" cellspacing="0">
         <thead>
         <tr>
-            <th>Hotel Facility Title</th>
-            <th>Facility Description</th>
-            <th>Facilities Status</th>
+            <th>Hotel Room Amenities Title</th>
+            <th>Amenities Description</th>
+            <th>Amenities Status</th>
             <th>Actions</th>
         </tr>
         </thead>

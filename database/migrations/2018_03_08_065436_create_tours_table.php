@@ -15,21 +15,22 @@ class CreateToursTable extends Migration
     {
         //
         Schema::create('tour_package', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->text('itinerary');
-            $table->string('tag');
+            $table->text('tag')->nullable();
             $table->string('duration');
-            $table->string('price');
+            $table->float('price',8,2)->default(0000.00)->nullable();
             $table->string('group_rate');
             $table->string('best_time');
             $table->string('group_size')->default('any');
             $table->text('cost_includes_excludes')->nullable();
             $table->string('image')->nullable();
-            $table->boolean('is_home')->default(0);
             $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

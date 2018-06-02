@@ -10,16 +10,13 @@ namespace App\Http\Controllers\Backend\Hotels;
 
 
 use App\Http\Controllers\Controller;
-use App\Models\HotelFacility;
-use App\Models\HotelRoomFacility;
 use App\Models\Hotels;
 use App\Models\HotelService;
-use App\Models\Rooms;
+
 use Illuminate\Http\Request;
 use Image;
 use Storage;
 use App\Models\HotelGallery;
-
 
 use Illuminate\Support\Facades\Input;
 
@@ -33,12 +30,11 @@ class hotelsController extends Controller
     public function index()
     {
         $booking = '';
-        $facilities = HotelFacility::where('enable', 1)->get();
+
         $services = HotelService::where('enable', 1)->get();
         return view('Backend.Hotels.index', [
                 'booking' => $booking,
-                'facilities' => $facilities,
-                'services' => $services,
+                'services' => $services
             ]
         );
 
@@ -47,15 +43,17 @@ class hotelsController extends Controller
     public function list()
     {
         $hotels = Hotels::all();
-        $facilities = HotelFacility::where('enable', 1)->get();
+
         $services = HotelService::where('enable', 1)->get();
-        return view('Backend.Hotels.index', ['hotels' => $hotels, 'facilities' => $facilities, 'services' => $services]
+        return view('Backend.Hotels.index', [
+                'hotels' => $hotels,
+                'services' => $services
+            ]
         );
     }
 
     public function createHotel(Request $request)
     {
-
         $this->validate($request, [
             'hotel_name' => 'required',
             'hotel_province' => '',
@@ -102,16 +100,12 @@ class hotelsController extends Controller
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
-
             Storage::disk('public')->put($fileName, $img->stream());
             $hotel->hotel_logo = $fileName;
         }
-
         $hotel->save();
-
 //        $hotelIoffers=hotels_offers::find($request->input('hotel_offer_id'));
 
-        $hotel->HotelFacility()->sync($request->input('facilities_id'));
         $hotel->HotelService()->sync($request->input('service_id'));
         return redirect()->back()->with(['success' => 'Created Successfully']);
     }
@@ -119,9 +113,12 @@ class hotelsController extends Controller
     public function editHotel($id)
     {
         $hotel = Hotels::findorFail($id);
-        $facilities = HotelFacility::where('enable', 1)->get();
+
         $services = HotelService::Where('enable', 1)->get();
-        return view('Backend.Hotels.edit', ['hotel' => $hotel, 'facilities' => $facilities, 'services' => $services]);
+        return view('Backend.Hotels.edit', [
+            'hotel' => $hotel,
+            'services' => $services
+        ]);
     }
 
     public function storeHotel(Request $request)
@@ -175,13 +172,10 @@ class hotelsController extends Controller
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
-
             Storage::disk('public')->put($fileName, $img->stream());
             $hotel->hotel_logo = $fileName;
         }
-
         $hotel->save();
-        $hotel->HotelFacility()->sync($request->input('facilities_id'));
         $hotel->HotelService()->sync($request->input('service_id'));
         return redirect()->route('hotels.list')->with(['success' => 'Updated Successfully']);
     }
@@ -194,9 +188,7 @@ class hotelsController extends Controller
         $data['no_of_people'] = $request->input('no_of_people');
         $data['start_date'] = $request->input('start_date');
         $data['end_date'] = $request->input('end_date');
-
         $search = Hotels::where('city', 'like', '%' . $data['city'] . '%')->get();
-
         return view('Backend.Hotels.hotelsearchResult', ['search' => $search, 'data' => $data]);
     }
 
@@ -255,14 +247,12 @@ class hotelsController extends Controller
         $form->hotel_id = $request->input('hotel_id');
         $form->image = $fileName;
         $form->save();
-
 //        return response()->json(['success'=>$fileName]);
         return redirect()->back();
     }
 
     public function hoteldeleteImageGallery($id)
     {
-
         $image = HotelGallery::WHERE('id', $id)->first();
         if (!(empty($image->image))) {
 
@@ -273,11 +263,7 @@ class hotelsController extends Controller
                     $image->delete();
                 }
             }
-
-
         }
-
         return redirect()->back();
     }
-
 }

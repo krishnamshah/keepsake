@@ -305,32 +305,7 @@ Route::prefix('backend')->group(function () {
                 'uses' => 'Backend\Hotels\hotelsController@hoteldeleteImageGallery',
                 'as' => 'delete.hotel.image'
             ]);
-            Route::group(['prefix' => 'facilities'], function () {
-                Route::get('/', [
-                    'uses' => 'Backend\Hotels\hotelsFacilitiesController@list',
-                    'as' => 'hotels.facilities.list'
-                ]);
-                Route::post('/add', [
-                    'uses' => 'Backend\Hotels\hotelsFacilitiesController@add',
-                    'as' => 'hotels.facilities.add'
-                ]);
-                Route::get('/activateFacility/{id}', [
-                    'uses' => 'Backend\Hotels\hotelsFacilitiesController@activate',
-                    'as' => 'hotels.facilities.activate'
-                ]);
-                Route::get('/deactivateHotel/{id}', [
-                    'uses' => 'Backend\Hotels\hotelsFacilitiesController@deactivate',
-                    'as' => 'hotels.facilities.deactivate'
-                ]);
-                Route::get('/edit/{id}', [
-                    'uses' => 'Backend\Hotels\hotelsFacilitiesController@edit',
-                    'as' => 'hotels.facilities.edit'
-                ]);
-                Route::get('/update/{id}', [
-                    'uses' => 'Backend\Hotels\hotelsFacilitiesController@update',
-                    'as' => 'hotels.facilities.update'
-                ]);
-            });
+
             Route::group(['prefix' => 'services'], function () {
                 Route::get('/', [
                     'uses' => 'Backend\Hotels\hotelsServicesController@list',
@@ -377,30 +352,30 @@ Route::prefix('backend')->group(function () {
                     ]);
 
                 });
-                Route::group(['prefix' => 'room-facilities'], function () {
+                Route::group(['prefix' => 'room-amenities'], function () {
                     Route::get('/', [
-                        'uses' => 'Backend\Hotels\hotelsRoomFacilitiesController@list',
-                        'as' => 'hotels.room.facilities.list'
+                        'uses' => 'Backend\Hotels\hotelRoomAmenitiesController@list',
+                        'as' => 'hotels.room.amenities.list'
                     ]);
                     Route::post('/add', [
-                        'uses' => 'Backend\Hotels\hotelsRoomFacilitiesController@add',
-                        'as' => 'hotels.room.facilities.add'
+                        'uses' => 'Backend\Hotels\hotelRoomAmenitiesController@add',
+                        'as' => 'hotels.room.amenities.add'
                     ]);
                     Route::get('/edit/{id}', [
-                        'uses' => 'Backend\Hotels\hotelsRoomFacilitiesController@edit',
-                        'as' => 'hotels.room.facilities.edit'
+                        'uses' => 'Backend\Hotels\hotelRoomAmenitiesController@edit',
+                        'as' => 'hotels.room.amenities.edit'
                     ]);
                     Route::get('/update/{id}', [
-                        'uses' => 'Backend\Hotels\hotelsRoomFacilitiesController@update',
-                        'as' => 'hotels.room.facilities.update'
+                        'uses' => 'Backend\Hotels\hotelRoomAmenitiesController@update',
+                        'as' => 'hotels.room.amenities.update'
                     ]);
-                    Route::get('/activateFacility/{id}', [
-                        'uses' => 'Backend\Hotels\hotelsRoomFacilitiesController@activate',
-                        'as' => 'hotels.room.facilities.activate'
+                    Route::get('/activateAmenity/{id}', [
+                        'uses' => 'Backend\Hotels\hotelRoomAmenitiesController@activate',
+                        'as' => 'hotels.room.amenities.activate'
                     ]);
-                    Route::get('/deactivateFacility/{id}', [
-                        'uses' => 'Backend\Hotels\hotelsRoomFacilitiesController@deactivate',
-                        'as' => 'hotels.room.facilities.deactivate'
+                    Route::get('/deactivateAmenity/{id}', [
+                        'uses' => 'Backend\Hotels\hotelRoomAmenitiesController@deactivate',
+                        'as' => 'hotels.room.amenities.deactivate'
                     ]);
                 });
                 Route::group(['prefix' => 'room-services'], function () {
@@ -466,6 +441,18 @@ Route::prefix('backend')->group(function () {
                 Route::get('/deactivateRoom/{id}', [
                     'uses' => 'Backend\Hotels\roomsController@deactivateroom',
                     'as' => 'rooms.deactivate'
+                ]);
+                Route::get('/ImageGallery/{id}', [
+                    'uses' => 'Backend\Hotels\roomsController@roomImageGallery',
+                    'as' => 'rooms.images'
+                ]);
+                Route::post('/AddImageGallery', [
+                    'uses' => 'Backend\Hotels\roomsController@roomAddImageGallery',
+                    'as' => 'rooms.images.addgallery'
+                ]);
+                Route::get('/DeleteImageGallery/{id}', [
+                    'uses' => 'Backend\Hotels\roomsController@roomdeleteImageGallery',
+                    'as' => 'rooms.room.image'
                 ]);
                 Route::group(['prefix' => 'bookingRooms'], function () {
                     Route::get('/', [

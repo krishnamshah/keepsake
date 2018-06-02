@@ -29,13 +29,14 @@ class Rooms extends Model
         return $this->belongsTo('App\Models\HotelRoomType','hotel_room_type_id','id');
     }
 
-    public function HotelRoomFacility()
-    {
-        return $this->belongsToMany('App\Models\HotelRoomFacility')->withTimestamps();
-    }
 
     public function HotelRoomService()
     {
         return $this->belongsToMany('App\Models\HotelRoomService')->withTimestamps();
+    }
+
+    public function HotelRoomAmenity()
+    {
+        return $this->belongsToMany('App\Models\HotelRoomAmenity')->withTimestamps();
     }
 }

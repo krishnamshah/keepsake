@@ -8,9 +8,7 @@
 
 namespace App\Http\Controllers\Backend\Hotels;
 
-
 use App\Http\Controllers\Controller;
-use App\Models\HotelRoomFacility;
 use App\Models\HotelRoomService;
 use App\Models\HotelRoomType;
 use App\Models\Hotels;
@@ -26,6 +24,7 @@ class roomsController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function indexRoom()
     {
         $booking = '';
@@ -38,11 +37,9 @@ class roomsController extends Controller
         $rooms = Rooms::all();
         $hotels = Hotels::all();
         $roomTypes = HotelRoomType::all();
-        $roomFacility = HotelRoomFacility::where('enable', 1)->get();
         $roomService = HotelRoomService::where('enable', 1)->get();
         return view('Backend.Hotels.Rooms.index', [
                 'rooms' => $rooms,
-                'roomFacility' => $roomFacility,
                 'roomService' => $roomService,
                 'hotels' => $hotels,
                 'roomTypes' => $roomTypes
@@ -91,7 +88,6 @@ class roomsController extends Controller
         $room->no_of_rooms = $request->input('room_no_of_rooms');
 
         $room->save();
-        $room->HotelRoomFacility()->sync($request->input('facilities_id'));
         $room->HotelRoomService()->sync($request->input('services_id'));
 
         return redirect()->back()->with(['success' => 'Created Successfully']);
@@ -102,12 +98,12 @@ class roomsController extends Controller
         $room = Rooms::findorFail($id);
         $hotels = Hotels::all();
         $roomTypes = HotelRoomType::all();
-        $roomFacility = HotelRoomFacility::where('enable', 1)->get();
+
         $roomService = HotelRoomService::where('enable', 1)->get();
 
         return view('Backend.Hotels.Rooms.edit',
             ['room' => $room,
-                'roomFacility' => $roomFacility,
+
                 'roomService' => $roomService,
                 'hotels' => $hotels,
                 'roomTypes' => $roomTypes
@@ -128,8 +124,9 @@ class roomsController extends Controller
         $room->no_of_rooms = $request->input('room_no_of_rooms');
 
         $room->update();
-        $room->HotelRoomFacility()->sync($request->input('facilities_id'));
+
         $room->HotelRoomService()->sync($request->input('services_id'));
+        $room->HotelRoomAmenity()->sync($request->input('amenity_id'));
 
         return redirect()->route('rooms.details', $room->id)->with(['success' => 'Updated Successfully']);
     }
@@ -177,7 +174,7 @@ class roomsController extends Controller
     {
         $hotelId = $hotel_id;
         $hotel_name = Rooms::where('id', $hotel_id)->first();
-        $hotelImages = HotelGallery::where('hotel_id', $hotel_id)->get();
+        $hotelImages = HotelRoomGallery::where('hotel_id', $hotel_id)->get();
         return view('Backend.Hotels.ImageGallery', ['hotel_Images' => $hotelImages, 'hotelId' => $hotelId, 'hotel' => $hotel_name]);
     }
 

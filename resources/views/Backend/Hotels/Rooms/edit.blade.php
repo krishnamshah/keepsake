@@ -98,26 +98,7 @@
                                 <span class="bar"></span>
                                 <label>No Of Rooms</label>
                             </div>
-                            <h3> Hotel Room Facilities</h3>
-                            <div class="col-md-12">
 
-                                @forelse($roomFacility  as $facility)
-
-                                    <input type="checkbox" value="{{$facility->id}}" name="facilities_id[]"
-
-                                    @foreach($room->HotelRoomFacility as $hot)
-                                        @if ($hot->id==$facility->id)
-                                            {{"checked"}}
-                                                @endif
-                                            @endforeach>
-                                    {{$facility->title}} - {{$facility->description}}
-
-                                @empty
-                                    Sorry No faciliites Are avilable
-                                @endforelse
-
-                            </div>
-                            <hr/>
                             <h3> Hotel Room Services</h3>
                             <div class="col-md-12">
 

@@ -15,11 +15,11 @@ class CreateHotelRoomGallerysTable extends Migration
     {
         Schema::create('hotel_room_gallerys', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->text('original_name');
-            $table->text('filename');
-            $table->integer('hotel_rooms_id')->unsigned();;
+            $table->text('image');
+            $table->integer('hotel_rooms_id')->unsigned();
             $table->foreign('hotel_rooms_id')->references('id')->on('hotel_rooms')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

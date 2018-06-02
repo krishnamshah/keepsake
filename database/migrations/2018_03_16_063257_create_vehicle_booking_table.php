@@ -14,20 +14,21 @@ class CreateVehicleBookingTable extends Migration
     public function up()
     {
         Schema::create('vehicle_booking', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->integer('vehicle_id')->unsigned();
-            $table->enum('booking_status',['booked','cancelled','confirmed']);
+            $table->enum('booking_status',['booked','cancelled','confirmed'])->default('booked');
             $table->enum('type', ['car', 'bus', 'zip', 'suv']);
-            $table->integer('no_of_People');
+            $table->integer('no_of_People')->default(1);
             $table->string('location');
             $table->string('drop_location')->nullable();
             $table->string('rate_perday')->nullable();
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->date('start_date')->default(date("Y-m-d"));
+            $table->date('end_date')->default(date("Y-m-d"));
             $table->string('booked_by');
-            $table->integer('phone_no');
+            $table->string('phone_no')->default('0000000000');
             $table->string('email');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -343,25 +343,6 @@
                             <label>Rating Agency</label>
                         </div>
 
-                        <h3> Hotel Facilities</h3>
-                        <div class="col-md-12">
-
-                            @forelse($facilities as $facility)
-
-                                <input type="checkbox" value="{{$facility->id}}" name="facilities_id[]"
-
-                                @foreach($hotel->HotelFacility as $hot)
-                                    @if ($hot->id==$facility->id)
-                                       {{"checked"}}
-                                    @endif
-                                @endforeach>
-                                {{$facility->title}} - {{$facility->description}}
-
-                            @empty
-                                Sorry No faciliites Are avilable
-                            @endforelse
-
-                        </div>
                         <hr/>
                         <h3> Hotel Services</h3>
                         <div class="col-md-12">
@@ -378,11 +359,11 @@
 
 
                             @empty
-                                Sorry No faciliites Are avilable
+                                Sorry No Services Are Avilable
                             @endforelse
 
                         </div>
-                        <hr/>
+
                         <div class="form-group form-animate-text" style="margin-top:40px !important;">
                             <input class="submit btn btn-success" value="Submit" type="submit">
                         </div>

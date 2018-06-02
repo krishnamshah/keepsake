@@ -14,7 +14,7 @@ class CreateHotelRoomTypesTable extends Migration
     public function up()
     {
         Schema::create('hotel_room_types', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('room_type');
             $table->text('description')->nullable();
             $table->integer('user_id')->unsigned()->nullable();
@@ -22,6 +22,7 @@ class CreateHotelRoomTypesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('updated_user_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

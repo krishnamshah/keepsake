@@ -9,14 +9,14 @@
                 <label>Hotel Room Type Title</label>
             </div>
             <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                <input type="text"  class="form-text" required name="hotel_room_types_description" />
+                <input type="text" class="form-text" required name="hotel_room_types_description"/>
                 <span class="bar"></span>
                 <label>Hotel Room Type Description</label>
             </div>
+
+            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                <input class="submit btn btn-success" value="Submit" type="submit">
+            </div>
+        </form>
     </div>
-    <div class="form-group form-animate-text" style="margin-top:40px !important;">
-        <input class="submit btn btn-success" value="Submit" type="submit">
-    </div>
-    </form>
-</div>
 </div>

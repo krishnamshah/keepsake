@@ -318,24 +318,12 @@
                     {{$service->service_name}} - {{$service->service_description}}
 
                 @empty
-                    Sorry No Service Are avilable
+                    Sorry No Services Are Avilable
                 @endforelse
 
             </div>
             <hr/>
-            <h3> Hotel Facilitiess</h3>
-            <div class="col-md-12">
-                @forelse($facilities as $facility)
 
-                    <input type="checkbox" value="{{$facility->id}}" name="service_id[]">
-                    {{$facility->title}} - {{$facility->description}}
-
-                @empty
-                    Sorry No Service Are avilable
-                @endforelse
-
-            </div>
-            <hr/>
             <div class="form-group form-animate-text" style="margin-top:40px !important;">
                 <input class="submit btn btn-success" value="Submit" type="submit">
             </div>

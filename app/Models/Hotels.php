@@ -43,9 +43,7 @@ class Hotels extends Model
     {
         return $this->hasMany('App\Models\HotelGallery');
     }
-    public function HotelFacility(){
-        return $this->belongsToMany('App\Models\HotelFacility')->withTimestamps();
-    }
+
     public function HotelService(){
         return $this->belongsToMany('App\Models\HotelService')->withTimestamps();
     }

@@ -52,9 +52,11 @@
                 </a>
                 <Ul class="nav nav-list tree">
                     <li><a href="{{route('rooms.list')}}"><span class="fa-list fa"></span>Room List
-                    </a></li>
+                        </a></li>
 
                     <li><a href="{{route('hotels.room.types.list')}}"><span class="fa-list fa"></span>Room Types</a>
+                    </li>
+                    <li><a href="{{route('hotels.room.bedTypes.list')}}"><span class="fa-list fa"></span>Room Bed Types</a>
                     </li>
                     <li><a href="{{route('hotels.room.amenities.list')}}"><span class="fa-list fa"></span>Room
                             Amenities</a></li>
@@ -74,8 +76,7 @@
                     <li><a href="{{route('vehicles.list')}}"><span class="fa-list fa"></span> List</a></li>
                     <li><a href="{{route('bookingsVehicle.list')}}"><span class="fa-clipboard fa"></span> Bookings</a>
                     </li>
-                    <li><a href="#"><span class="fa-ticket fa"></span> Invloce</a></li>
-
+                    <li><a href="#"><span class="fa-ticket fa"></span> Invioce</a></li>
                 </ul>
             </li>
             <li class="ripple">
@@ -87,16 +88,13 @@
                     <li><a href="{{route('tours.list')}}"><span class="fa-list fa"></span> List</a></li>
                     <li><a href="{{route('bookingsTour.list')}}"><span class="fa-clipboard fa"></span> Bookings</a></li>
                     <li><a href="#"><span class="fa-ticket fa"></span> Invloce</a></li>
-
                 </ul>
             </li>
-
             <li><a href="{{route('pages.list')}}"><span class="fa-paragraph fa"></span> Page Management</a></li>
             <li><a href="{{route('slider')}}"><span class="fa-paragraph fa"></span> Slider</a></li>
             <li><a href="#"><span class="fa-table fa"></span>Menu Management</a></li>
             <li><a href="#"><span class="fa-user-plus fa"></span>User Management</a></li>
             <li><a href="#"><span class="fa-gears fa"></span>Configuration</a></li>
-
 
         </ul>
     </div>

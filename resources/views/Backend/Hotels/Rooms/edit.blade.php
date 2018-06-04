@@ -55,8 +55,8 @@
                                     <option>Select your room types</option>
                                     @forelse($roomTypes as $roomType)
                                         <option value="{{$roomType->id}}"
-                                        {{($roomType->id==$room->hotel_room_type_id)?'Selected':''}}>
-                                        {{$roomType->room_type}}</option>
+                                                {{($roomType->id==$room->hotel_room_type_id)?'Selected':''}}>
+                                            {{$roomType->room_type}}</option>
                                     @empty
                                         <option>Sorry no room types are avilable</option>
                                     @endforelse
@@ -98,7 +98,25 @@
                                 <span class="bar"></span>
                                 <label>No Of Rooms</label>
                             </div>
+                            <h3> Hotel Room Bed Types</h3>
+                            <div class="col-md-12">
 
+                                @forelse($bedTypes as $bedType)
+
+                                    <input type="checkbox" value="{{$bedType->id}}" name="bedTypes_id[]"
+                                    @foreach($room->HotelRoomBedType as $hot)
+                                        @if ($hot->id==$bedType->id)
+                                            {{"checked"}}
+                                                @endif
+                                            @endforeach
+                                    >
+                                    {{$bedType->bed_type}} - {{$bedType->bed_type_remarks}}
+
+                                @empty
+                                    Sorry No Bed Types Are avilable
+                                @endforelse
+
+                            </div>
                             <h3> Hotel Room Services</h3>
                             <div class="col-md-12">
 
@@ -109,9 +127,27 @@
                                     @foreach($room->HotelRoomService as $hot)
                                         @if ($hot->id==$service->id)
                                             {{"checked"}}
-                                        @endif
-                                    @endforeach>
+                                                @endif
+                                            @endforeach>
                                     {{$service->service_name}} - {{$service->service_description}}
+
+                                @empty
+                                    Sorry No Services Are avilable
+                                @endforelse
+
+                            </div>
+                            <h3> Hotel Room Amenities</h3>
+                            <div class="col-md-12">
+
+                                @forelse($roomAmenities as $amenities)
+
+                                    <input type="checkbox" value="{{$amenities->id}}" name="amenity_id[]"
+                                    @foreach($room->HotelRoomAmenity as $hot)
+                                        @if ($hot->id==$amenities->id)
+                                            {{"checked"}}
+                                                @endif
+                                            @endforeach>
+                                    {{$amenities->amenity_name}} - {{$amenities->amenity_description}}
 
                                 @empty
                                     Sorry No Services Are avilable

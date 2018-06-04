@@ -30,23 +30,32 @@
                 <div class="form-element">
                     <div class="col-md-12 padding-0">
                         <form method="patch" enctype="multipart/form-data"
-                              action="{{route('hotels.room.facilities.update',$facility->id)}}">
+                              action="{{route('hotels.room.amenities.update',$amenity->id)}}">
                             @csrf
-                                <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                                    <input type="text" class="form-text" required name="hotel_room_facilities_title" value="{{$facility->title}}">
-                                    <span class="bar"></span>
-                                    <label>Hotel Room Facility Title</label>
-                                </div>
-                                <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                                    <input type="text" class="form-text" required name="hotel_room_facilities_description" value="{{$facility->description}}">
-                                    <span class="bar"></span>
-                                    <label>Hotel Room FacilityDescription</label>
-                                </div>
                             <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                                {{ Form::checkbox('hotel_room_facilities_enable',($facility->enable==1)?"checked":"", true) }}
+                                <input type="text" class="form-text" required name="hotel_room_amenities_title" value="{{$amenity->amenity_name}}">
+                                <span class="bar"></span>
+                                <label>Hotel Room Amenities Title</label>
+                            </div>
+                            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                                <input type="text"  class="form-text" required name="hotel_room_amenities_description" value="{{$amenity->amenity_description}}"/>
+                                <span class="bar"></span>
+                                <label>Hotel Room Amenities Description</label>
+                            </div>
+                            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                                <input type="text"  class="form-text" required name="hotel_room_amenities_remark" value="{{$amenity->remarks}}" />
+                                <span class="bar"></span>
+                                <label>Hotel Room Amenities Remarks</label>
+                            </div>
+
+                            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+
+                                {{ Form::checkbox('hotel_room_amenities_enable',($amenity->enable==1)?"checked":"", true) }} Hotel Room Amenities Enable
                                     {{--<input type="checkbox" name="hotel_room_facilities_enable"  >--}}
                                     {{--<label class="onoffswitch-label" for="myonoffswitch1A">{{($facility->enable==1)?"Enable":"Disable"}}</label>--}}
-                                </div>
+                                <span></span>
+
+                            </div>
 
 
 

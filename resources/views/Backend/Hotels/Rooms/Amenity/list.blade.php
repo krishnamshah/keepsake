@@ -6,23 +6,25 @@
         <tr>
             <th>Hotel Room Amenities Title</th>
             <th>Amenities Description</th>
+            <th>Amenities Remarks</th>
             <th>Amenities Status</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        @forelse($facilities as $facility)
+        @forelse($amenities as $amenity)
             <tr>
 
-                <td>{{$facility->title}}</td>
-                <td>{{$facility->description}}</td>
-                <td>{{($facility->enable==1)?"Enabled":"Disabled"}}</td>
+                <td>{{$amenity->amenity_name}}</td>
+                <td>{{$amenity->amenity_description}}</td>
+                <td>{{$amenity->remarks}}</td>
+                <td>{{($amenity->enable==1)?"Enabled":"Disabled"}}</td>
 
                 <td>
 
-                    <a href="{{route('hotels.room.facilities.edit',$facility->id)}}" ><span class="label label-warning">Edit</span></a>
-                    <a href="{{route((($facility->enable==1)?'hotels.room.facilities.deactivate':'hotels.room.facilities.activate'),$facility->id)}}">
-                        <span class="label label-primary">{{($facility->enable==1)?'Deactive':'Active'}}</span></a>
+                    <a href="{{route('hotels.room.amenities.edit',$amenity->id)}}" ><span class="label label-warning">Edit</span></a>
+                    <a href="{{route((($amenity->enable==1)?'hotels.room.amenities.deactivate':'hotels.room.amenities.activate'),$amenity->id)}}">
+                        <span class="label label-primary">{{($amenity->enable==1)?'Deactive':'Active'}}</span></a>
                     {{--<a href="#"> <span class="label label-danger">Delete</span></a>--}}
 
                 </td>

@@ -18,7 +18,7 @@ class CreateHotelRoomAmenitiesTable extends Migration
             $table->string('amenity_name');
             $table->text('amenity_description')->nullable();
             $table->string('remarks')->nullable();
-            $table->boolean('enable')->default(1);
+            $table->boolean('enable')->default(1)->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

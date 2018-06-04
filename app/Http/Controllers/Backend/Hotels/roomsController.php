@@ -9,6 +9,9 @@
 namespace App\Http\Controllers\Backend\Hotels;
 
 use App\Http\Controllers\Controller;
+use App\Models\HotelRoomAmenity;
+use App\Models\HotelRoomBedType;
+use App\Models\HotelRoomGallery;
 use App\Models\HotelRoomService;
 use App\Models\HotelRoomType;
 use App\Models\Hotels;
@@ -38,11 +41,15 @@ class roomsController extends Controller
         $hotels = Hotels::all();
         $roomTypes = HotelRoomType::all();
         $roomService = HotelRoomService::where('enable', 1)->get();
+        $roomAmenites = HotelRoomAmenity::where('enable', 1)->get();
+        $bedTypes = HotelRoomBedType::all();
         return view('Backend.Hotels.Rooms.index', [
                 'rooms' => $rooms,
                 'roomService' => $roomService,
                 'hotels' => $hotels,
-                'roomTypes' => $roomTypes
+                'roomTypes' => $roomTypes,
+                'roomAmenities' => $roomAmenites,
+                'bedTypes' => $bedTypes
             ]
         );
     }
@@ -63,6 +70,10 @@ class roomsController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function createRoom(Request $request)
     {
 
@@ -76,19 +87,37 @@ class roomsController extends Controller
             'room_cost_per_extra_bed' => '',
             'room_no_of_rooms' => '',
         ]);
-
+//dd($request);
         $room = new Rooms();
         $room->hotel_id = $request->input('room_hotel_id');
         $room->hotel_room_type_id = $request->input('room_hotel_room_type_id');
         $room->name = $request->input('room_name');
-        $room->no_of_people = $request->input('room_no_of_people');
+        $room->no_of_adult = $request->input('no_of_adult');
+        $room->no_of_child = $request->input('no_of_child');
         $room->max_extra_bed_up = $request->input('room_max_extra_bed_up');
         $room->room_cost = $request->input('room_room_cost');
+        $room->rate_ep_plan = $request->input('room_cost_ep_plan');
+        $room->rate_ap_plan = $request->input('room_cost_ap_plan');
+        $room->rate_map_plan = $request->input('room_cost_map_plan');
+        $room->rate_cp_plan = $request->input('room_cost_cp_plan');
+        $room->room_cost = $request->input('room_no_of_rooms');
         $room->cost_per_extra_bed = $request->input('room_cost_per_extra_bed');
         $room->no_of_rooms = $request->input('room_no_of_rooms');
-
+        if ($request->file('hotel_room_image')) {
+            $hotel_room_image = $request->file('hotel_room_image');
+            $img = Image::make($hotel_room_image);
+            $fileName = 'hotel' . '/rooms/' . date("Y-m-d-H-i-s") . '_Hotel_Rooms_' . $hotel_room_image->getClientOriginalName();
+            $img->fit(1200, 600, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+            Storage::disk('public')->put($fileName, $img->stream());
+            $room->image = $fileName;
+        }
         $room->save();
         $room->HotelRoomService()->sync($request->input('services_id'));
+        $room->HotelRoomAmenity()->sync($request->input('amenity_id'));
+        $room->HotelRoomBedType()->sync($request->input('bedTypes_id'));
 
         return redirect()->back()->with(['success' => 'Created Successfully']);
     }
@@ -98,15 +127,17 @@ class roomsController extends Controller
         $room = Rooms::findorFail($id);
         $hotels = Hotels::all();
         $roomTypes = HotelRoomType::all();
-
+        $bedTypes = HotelRoomBedType::all();
+        $roomAmenites = HotelRoomAmenity::where('enable', 1)->get();
         $roomService = HotelRoomService::where('enable', 1)->get();
 
         return view('Backend.Hotels.Rooms.edit',
             ['room' => $room,
-
                 'roomService' => $roomService,
                 'hotels' => $hotels,
-                'roomTypes' => $roomTypes
+                'roomTypes' => $roomTypes,
+                'bedTypes' => $bedTypes,
+                'roomAmenities' => $roomAmenites,
             ]);
     }
 
@@ -127,6 +158,7 @@ class roomsController extends Controller
 
         $room->HotelRoomService()->sync($request->input('services_id'));
         $room->HotelRoomAmenity()->sync($request->input('amenity_id'));
+        $room->HotelRoomBedType()->sync($request->input('bedTypes_id'));
 
         return redirect()->route('rooms.details', $room->id)->with(['success' => 'Updated Successfully']);
     }
@@ -170,12 +202,12 @@ class roomsController extends Controller
         return redirect()->route('rooms.list')->with(['success' => 'Successfully changed']);
     }
 
-    public function roomImageGallery($hotel_id)
+    public function roomImageGallery($room_id)
     {
-        $hotelId = $hotel_id;
-        $hotel_name = Rooms::where('id', $hotel_id)->first();
-        $hotelImages = HotelRoomGallery::where('hotel_id', $hotel_id)->get();
-        return view('Backend.Hotels.ImageGallery', ['hotel_Images' => $hotelImages, 'hotelId' => $hotelId, 'hotel' => $hotel_name]);
+        $roomId = $room_id;
+        $room_name = Rooms::where('id', $room_id)->first();
+        $roomImages = HotelRoomGallery::where('hotel_rooms_id', $room_id)->get();
+        return view('Backend.Hotels.Rooms.ImageGallery', ['room_Images' => $roomImages, 'roomId' => $roomId, 'room' => $room_name]);
     }
 
     public function roomAddImageGallery(Request $request)
@@ -184,7 +216,7 @@ class roomsController extends Controller
         if ($request->file('file')) {
             $room_image = $files;
             $img = Image::make($room_image);
-            $fileName = 'hotel/room/hotelGallery' . '/' . date("Y-m-d-H-i-s") . '_hotel_gallery__' . $room_image->getClientOriginalName();
+            $fileName = 'hotel/rooms/roomGallery' . '/' . date("Y-m-d-H-i-s") . '_room_gallery_' . $room_image->getClientOriginalName();
             $img->fit(1200, 600, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
@@ -195,7 +227,7 @@ class roomsController extends Controller
         }
         $img->destroy();
         $form = new HotelRoomGallery();
-        $form->hotel_id = $request->input('hotel_id');
+        $form->hotel_rooms_id = $request->input('room_id');
         $form->image = $fileName;
         $form->save();
 

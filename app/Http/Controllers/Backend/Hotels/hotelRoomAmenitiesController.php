@@ -15,33 +15,34 @@ class hotelRoomAmenitiesController extends Controller
         $this->middleware('auth');
     }
     //
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function list()
     {
-        $aminity = HotelRoomAmenity::all();
-        return view('Backend.Hotels.Rooms.Service.index', ['aminity' => $aminity]);
+        $amenities = HotelRoomAmenity::all();
+        return view('Backend.Hotels.Rooms.Amenity.index', ['amenities' => $amenities]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     Public function add(Request $request)
     {
 
         $this->validate($request, [
-            'hotel_amenity_name' => 'required',
-            'hotel_service_hour' => '',
-            'hotel_service_type' => '',
-            'hotel_service_cost' => '',
-            'hotel_service_cost_unit' => '',
-            'hotel_service_description' => '',
-            'hotel_service_remark' => '',
+            'hotel_room_amenities_title' => 'required',
+            'hotel_room_amenities_description' => '',
+            'hotel_room_amenities_remark' => '',
         ]);
-        $hotel_services = new HotelRoomAmenity();
-        $hotel_services->service_name = $request->input('hotel_service_name');
-        $hotel_services->service_description = $request->input('hotel_service_description');
-        $hotel_services->service_hour = $request->input('hotel_service_hour');
-        $hotel_services->service_type = $request->input('hotel_service_type');
-        $hotel_services->cost = $request->input('hotel_service_cost');
-        $hotel_services->unit = $request->input('hotel_service_cost_unit');
-        $hotel_services->remarks = $request->input('hotel_service_remark');
-        $hotel_services->save();
+        $hotel_amenity = new HotelRoomAmenity();
+        $hotel_amenity->amenity_name = $request->input('hotel_room_amenities_title');
+        $hotel_amenity->amenity_description = $request->input('hotel_room_amenities_description');
+        $hotel_amenity->remarks = $request->input('hotel_room_amenities_remark');
+
+        $hotel_amenity->save();
         return redirect()->back()->with(['success' => 'Created Successfully']);
     }
 
@@ -50,7 +51,7 @@ class hotelRoomAmenitiesController extends Controller
         $service = HotelRoomAmenity::findorfail($id);
         $service->enable = 1;
         $service->update();
-        return redirect()->route('hotels.room.services.list')->with(['success' => 'Successfully changed']);
+        return redirect()->route('hotels.room.amenities.list')->with(['success' => 'Successfully changed']);
     }
 
     public function deactivate($id)
@@ -58,36 +59,28 @@ class hotelRoomAmenitiesController extends Controller
         $service = HotelRoomAmenity::findorfail($id);
         $service->enable = 0;
         $service->update();
-        return redirect()->route('hotels.room.services.list')->with(['success' => 'Successfully changed']);
+        return redirect()->route('hotels.room.amenities.list')->with(['success' => 'Successfully changed']);
     }
 
     public function edit($id)
     {
-        $service = HotelRoomAmenity::findorFail($id);
-        return view('Backend.Hotels.Rooms.Service.edit', ['service' => $service]);
+        $amenity = HotelRoomAmenity::findorFail($id);
+        return view('Backend.Hotels.Rooms.Amenity.edit', ['amenity' => $amenity]);
     }
 
     Public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'hotel_service_name' => 'required',
-            'hotel_service_hour' => '',
-            'hotel_service_type' => '',
-            'hotel_service_cost' => '',
-            'hotel_service_cost_unit' => '',
-            'hotel_service_description' => '',
-            'hotel_service_remark' => '',
+            'hotel_room_amenities_title' => 'required',
+            'hotel_room_amenities_description' => '',
+            'hotel_room_amenities_remark' => '',
         ]);
-        $hotel_services = HotelRoomAmenity::findorFail($id);
-        $hotel_services->service_name = $request->input('hotel_service_name');
-        $hotel_services->service_description = $request->input('hotel_service_description');
-        $hotel_services->service_hour = $request->input('hotel_service_hour');
-        $hotel_services->service_type = $request->input('hotel_service_type');
-        $hotel_services->cost = $request->input('hotel_service_cost');
-        $hotel_services->unit = $request->input('hotel_service_cost_unit');
-        $hotel_services->remarks = $request->input('hotel_service_remark');
-        $hotel_services->enable = $request->input('hotel_service_enable');
-        $hotel_services->save();
-        return redirect()->route('hotels.room.services.list')->with(['success' => 'Created Successfully']);
+        $hotel_amenity = HotelRoomAmenity::findorFail($id);
+        $hotel_amenity->amenity_name = $request->input('hotel_room_amenities_title');
+        $hotel_amenity->amenity_description = $request->input('hotel_room_amenities_description');
+        $hotel_amenity->remarks = $request->input('hotel_room_amenities_remark');
+        $hotel_amenity->enable = $request->input('hotel_room_amenities_enable');
+        $hotel_amenity->save();
+        return redirect()->route('hotels.room.amenities.list')->with(['success' => 'Created Successfully']);
     }
 }

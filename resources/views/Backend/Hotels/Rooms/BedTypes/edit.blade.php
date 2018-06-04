@@ -13,61 +13,44 @@
     <link rel="stylesheet" type="text/css"
           href="{{URL::asset('BackendTheme/asset/css/plugins/bootstrap-material-datetimepicker.css')}}"/>
 @endsection
-
 @section('content')
-
     <div id="content">
         <div class="tabs-wrapper text-center">
             <div class="panel box-shadow-none text-left content-header">
-                <div class="panel-body" style="padding-bottom:0px;">
+                <div class="panel-body" style="padding-bottom:10px;">
                     <div class="col-md-12">
-                        <h3 class="animated fadeInLeft">Hotel services</h3>
-                        {{--<p class="animated fadeInDown">--}}
-                        {{--Ui Element <span class="fa-angle-right fa"></span> Tabs & Panels--}}
-                        {{--</p>--}}
+                        <h3 class="animated fadeInLeft">Edit Facilities Details</h3>
+
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-
-                <div role="tabpanel" class="tab-pane fade active in" id="tabs-area-demo" aria-labelledby="tabs1">
-                    <div class="col-md-12">
-                        <div class="col-md-12">
-                            <div class="col-md-12 tabs-area">
-                                <div class="liner"></div>
-                                <ul class="nav nav-tabs nav-tabs-v5" id="tabs-demo6">
-                                    <li class="active">Hotel Room Facilites
-                                        <a href="#tabs-demo6-area1" data-toggle="tab" title="Hotels">
-                          <span class="round-tabs one">
-                            <i class="glyphicon glyphicon-plane"></i>
-                          </span>
-                                        </a>
-                                    </li>
-                                    <li>Add New Hotel Room Faciliites
-                                        <a href="#tabs-demo6-area2" data-toggle="tab" title="Add New Hotel">
-                                            <span class="round-tabs two"><i class="glyphicon glyphicon-user"></i></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content tab-content-v5">
-                                    <div class="tab-pane fade in active" id="tabs-demo6-area1">
-                                        @include('Backend.Hotels.Rooms.Facility.list')
-                                    </div>
-                                    <div class="tab-pane fade" id="tabs-demo6-area2">
-                                        @include('Backend.Hotels.Rooms.Facility.create')
-
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
         </div>
-    </div>
+        <div class="col-md-12">
+            <!-- start: Content -->
+            <div class="form-element">
+                <div class="col-md-12 padding-0">
+                    <form method="patch" enctype="multipart/form-data"
+                          action="{{route('hotels.room.bedTypes.update',$type->id)}}">
+                        @csrf
+                        <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                            <input type="text" class="form-text" required name="hotel_room_bed_type"
+                                   value="{{$type->bed_type}}">
+                            <span class="bar"></span>
+                            <label>Hotel Room Bed Type</label>
+                        </div>
+                        <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                            <input type="text" class="form-text" required name="hotel_room_bed_type_remark"
+                                   value="{{$type->bed_type_remarks}}"/>
+                            <span class="bar"></span>
+                            <label>Hotel Room Bed Type Remarks</label>
+                        </div>
+                        <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                            <input class="submit btn btn-success" value="Submit" type="submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection
@@ -150,6 +133,8 @@
                     this.value = firstname + "." + lastname;
                 }
             });
+
+
             $('.mask-date').mask('00/00/0000');
             $('.mask-time').mask('00:00:00');
             $('.mask-date_time').mask('00/00/0000 00:00:00');
@@ -225,15 +210,15 @@
             $('.mask-sp_celphones').mask(SPMaskBehavior, spOptions);
 
 
-            // var slider = document.getElementById('noui-slider');
-            // noUiSlider.create(slider, {
-            //     start: [20, 80],
-            //     connect: true,
-            //     range: {
-            //         'min': 0,
-            //         'max': 100
-            //     }
-            // });
+            var slider = document.getElementById('noui-slider');
+            noUiSlider.create(slider, {
+                start: [20, 80],
+                connect: true,
+                range: {
+                    'min': 0,
+                    'max': 100
+                }
+            });
 
             var slider = document.getElementById('noui-range');
             noUiSlider.create(slider, {
@@ -276,14 +261,20 @@
             $('.dateAnimate').bootstrapMaterialDatePicker({weekStart: 0, time: false, animation: true});
             $('.date').bootstrapMaterialDatePicker({weekStart: 0, time: false});
             $('.time').bootstrapMaterialDatePicker({date: false, format: 'HH:mm', animation: true});
-            $('.datetime').bootstrapMaterialDatePicker({format: 'dddd DD MMMM YYYY - HH:mm', animation: true});
+            $('.datetime').bootstrapMaterialDatePicker({
+                format: 'dddd DD MMMM YYYY - HH:mm',
+                animation: true
+            });
             $('.date-fr').bootstrapMaterialDatePicker({
                 format: 'DD/MM/YYYY HH:mm',
                 lang: 'fr',
                 weekStart: 1,
                 cancelText: 'ANNULER'
             });
-            $('.min-date').bootstrapMaterialDatePicker({format: 'DD/MM/YYYY HH:mm', minDate: new Date()});
+            $('.min-date').bootstrapMaterialDatePicker({
+                format: 'DD/MM/YYYY HH:mm',
+                minDate: new Date()
+            });
 
 
             $(".dial").knob({

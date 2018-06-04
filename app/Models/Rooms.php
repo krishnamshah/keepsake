@@ -21,12 +21,12 @@ class Rooms extends Model
 
     public function hotels()
     {
-        return $this->belongsTo('App\Models\hotels', 'hotel_id','id');
+        return $this->belongsTo('App\Models\hotels', 'hotel_id', 'id');
     }
 
     public function roomTypes()
     {
-        return $this->belongsTo('App\Models\HotelRoomType','hotel_room_type_id','id');
+        return $this->belongsTo('App\Models\HotelRoomType', 'hotel_room_type_id', 'id');
     }
 
 
@@ -38,5 +38,9 @@ class Rooms extends Model
     public function HotelRoomAmenity()
     {
         return $this->belongsToMany('App\Models\HotelRoomAmenity')->withTimestamps();
+    }
+    public function HotelRoomBedType()
+    {
+        return $this->belongsToMany('App\Models\HotelRoomBedType')->withTimestamps();
     }
 }

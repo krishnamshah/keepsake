@@ -378,6 +378,25 @@ Route::prefix('backend')->group(function () {
                         'as' => 'hotels.room.amenities.deactivate'
                     ]);
                 });
+                Route::group(['prefix' => 'room-bedtypes'], function () {
+                    Route::get('/', [
+                        'uses' => 'Backend\Hotels\hotelRoomBedTypesController@list',
+                        'as' => 'hotels.room.bedTypes.list'
+                    ]);
+                    Route::post('/add', [
+                        'uses' => 'Backend\Hotels\hotelRoomBedTypesController@add',
+                        'as' => 'hotels.room.bedTypes.add'
+                    ]);
+                    Route::get('/edit/{id}', [
+                        'uses' => 'Backend\Hotels\hotelRoomBedTypesController@edit',
+                        'as' => 'hotels.room.bedTypes.edit'
+                    ]);
+                    Route::get('/update/{id}', [
+                        'uses' => 'Backend\Hotels\hotelRoomBedTypesController@update',
+                        'as' => 'hotels.room.bedTypes.update'
+                    ]);
+
+                });
                 Route::group(['prefix' => 'room-services'], function () {
                     Route::get('/', [
                         'uses' => 'Backend\Hotels\hotelsRoomServicesController@list',

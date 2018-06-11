@@ -192,7 +192,7 @@
                             <label>House No.</label>
                         </div>
 
-                        <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                        <div class="form-group" style="margin-top:40px !important;">
                             <input class="form-text" type="file" name="hotel_logo"
                                 value="{{ $hotel->hotel_logo }}" required autofocus>
                             @if (Storage::disk('public')->has($hotel->hotel_logo))
@@ -318,9 +318,19 @@
                         </div>
 
                         <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                            <input id="hotel_hotel_star_rating" type="text" class="form-text{{ $errors->has('hotel_hotel_star_rating') ? ' is-invalid' : '' }}"
-                                   name="hotel_hotel_star_rating" value="{{$hotel->hotel_star_rating}}" required autofocus>
 
+                            <select id="hotel_hotel_star_rating" class="form-text{{ $errors->has('hotel_hotel_star_rating') ? ' is-invalid' : '' }}"
+                                    name="hotel_hotel_star_rating" value="{{$hotel->hotel_star_rating}}"required autofocus>
+                                <option value="0">Star Rating</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+
+                            </select>
                             @if ($errors->has('hotel_hotel_star_rating'))
                                 <span class="invalid-feedback">
                                         <strong>{{ $errors->first('hotel_hotel_star_rating') }}</strong>

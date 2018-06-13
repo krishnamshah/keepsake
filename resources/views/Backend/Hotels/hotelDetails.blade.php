@@ -18,7 +18,7 @@
         <div class="col-md-12 col-sm-12 profile-v1-wrapper">
             <div class="col-md-9  profile-v1-cover-wrap" style="padding-right:0px;">
                 <div class="profile-v1-pp">
-                    <img src="{{URL::to('storage/'.$hotel->image)}}" class="img-responsive"/>
+                    <img src="{{URL::to('storage/'.$hotel->hotel_logo)}}" class="img-responsive"/>
                     <h2>{{$hotel->name}}</h2>
 
                 </div>
@@ -55,7 +55,7 @@
                         <div class="col-md-12 padding-0 box-v7-header">
                             <div class="col-md-12 padding-0">
                                 <div class="col-md-10 padding-0">
-                                    <img src="{{URL::to('storage/'.$hotel->image)}}"
+                                    <img src="{{URL::to('storage/'.$hotel->hotel_logo)}}"
                                          class="img-responsive box-v7-avatar pull-left"/>
                                     <h4>{{$hotel->name}}</h4>
                                     <a href="{{route('hotels.edit',$hotel->id)}}"><span

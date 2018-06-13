@@ -54,7 +54,7 @@ class hotelController extends Controller
         $search_id = $hotel->id;
 
         $data = array('city' => $request->input('city'), 'no_of_People' => $request->input('no_of_People'), 'start' => $request->input('start'), 'end' => $request->input('end'), 'search_id'=>$search_id);
-        $request->session()->put('data', $data);
+
 
         $search = hotels::where('city', '=', $request->input('city'))->simplePaginate(15);
 

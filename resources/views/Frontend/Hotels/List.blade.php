@@ -82,8 +82,8 @@
                                 <h5>{{$sea->street}},{{$sea->city}},{{$sea->province}}</h5>
                                 <p>Rooms</p>
                                 <p class="mb0"> @for($i=1;$i<=$sea['hotel_star_rating'];$i++)
-                                    <li><i class="fa fa-star"></i>
-                                    </li>
+                                    <i class="fa fa-star"></i>
+                                    
                                     @endfor
                                     </p>
                             </div>

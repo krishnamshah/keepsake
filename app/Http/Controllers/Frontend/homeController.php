@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
+use App\Models\Hotels;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,12 +33,13 @@ class homeController extends Controller
      */
     public function index()
     {
+        $hotel = Hotels::all();
         Auth::logout();
         $slider=Slider::limit(5)->get();
         $trendy=null;
         $hot=null;
         $special=null;
-        return view('Frontend.home',['slider'=>$slider,'trendy'=>$trendy,'hot'=>$hot,'special'=>$special]);
+        return view('Frontend.home',['slider'=>$slider,'trendy'=>$trendy,'hot'=>$hot,'special'=>$special,'hotel' => $hotel]);
     }
 
 

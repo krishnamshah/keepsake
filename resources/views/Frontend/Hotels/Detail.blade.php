@@ -1340,7 +1340,7 @@
                                 <a class="booking-item">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <img src="{{Storage::URL($room->hotel_logo)}}"
+                                            <img src="{{URL::to('storage/'.$room->image)}}"
                                                  alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO lobby">
                                         </div>
                                         <div class="col-md-6">
@@ -1387,7 +1387,7 @@
                                         </div>
                                         <div class="col-md-3"><span
                                                     class="booking-item-price">{{$room->room_cost}}</span><span>/night</span><span
-                                                    class="btn btn-primary">Book</span>
+                                                    class="btn btn-primary"></span>
                                         </div>
                                     </div>
                                 </a>

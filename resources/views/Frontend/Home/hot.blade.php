@@ -1,83 +1,26 @@
 <div class="col-md-4">
-    <h3>Hot Deals <small><a href="#">view all</a></small></h3>
+    <h3>Hotels <small><a href="#">view all</a></small></h3>
     <ul class="booking-list">
+        @forelse($hotel as $sea)
         <li>
             <div class="booking-item booking-item-small">
                 <div class="row">
                     <div class="col-xs-4">
-                        <img src="img\lhotel_porto_bay_sao_paulo_suite_lhotel_living_room_800x600.jpg" alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO suite lhotel living room">
+                        <img src="{{URL::to('storage/'.$sea->hotel_logo)}}" alt="{{$sea->name}}" title="AMaze">
                     </div>
                     <div class="col-xs-5">
-                        <h5 class="booking-item-title">Bryant Park Hotel</h5>
-                        <ul class="icon-group booking-item-rating-stars">
-                            <li><i class="fa fa-star"></i>
-                            </li>
-                            <li><i class="fa fa-star"></i>
-                            </li>
-                            <li><i class="fa fa-star"></i>
-                            </li>
-                            <li><i class="fa fa-star"></i>
-                            </li>
-                            <li><i class="fa fa-star-half-empty"></i>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$480</span>
+                        <h5 class="booking-item-title"> {{$sea->hotel_name}}</h5>
+                        <p class="mb0"> @for($i=1;$i<=$sea['hotel_star_rating'];$i++)
+                                <i class="fa fa-star"></i>
+
+                            @endfor
+                        </p>
                     </div>
                 </div>
             </div>
         </li>
-        <li>
-            <div class="booking-item booking-item-small">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <img src="img\hotel_porto_bay_serra_golf_suite_800x600.jpg" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF suite">
-                    </div>
-                    <div class="col-xs-5">
-                        <h5 class="booking-item-title">The Kimberly Hotel</h5>
-                        <ul class="icon-group booking-item-rating-stars">
-                            <li><i class="fa fa-star"></i>
-                            </li>
-                            <li><i class="fa fa-star"></i>
-                            </li>
-                            <li><i class="fa fa-star"></i>
-                            </li>
-                            <li><i class="fa fa-star"></i>
-                            </li>
-                            <li><i class="fa fa-star"></i>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$369</span>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="booking-item booking-item-small">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <img src="{{URL::asset('FrontEndTheme\img\hotel_porto_bay_serra_golf_living_room_800x600.jpg')}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF living room">
-                    </div>
-                    <div class="col-xs-5">
-                        <h5 class="booking-item-title">Waldorf Astoria New York</h5>
-                        <ul class="icon-group booking-item-rating-stars">
-                            <li><i class="fa fa-star"></i>
-                            </li>
-                            <li><i class="fa fa-star"></i>
-                            </li>
-                            <li><i class="fa fa-star"></i>
-                            </li>
-                            <li><i class="fa fa-star"></i>
-                            </li>
-                            <li><i class="fa fa-star"></i>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">$278</span>
-                    </div>
-                </div>
-            </div>
-        </li>
+        @empty
+            Sorry no result found!!
+        @endforelse
     </ul>
 </div>
